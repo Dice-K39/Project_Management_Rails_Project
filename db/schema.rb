@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_095919) do
+ActiveRecord::Schema.define(version: 2020_09_22_101345) do
+
+  create_table "assignments", force: :cascade do |t|
+    t.text "task"
+    t.datetime "assigned_at"
+    t.integer "programmer_id"
+    t.integer "project_id"
+    t.integer "comment_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "programmers", force: :cascade do |t|
     t.string "username"
