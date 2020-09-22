@@ -42,3 +42,4 @@ yarn-debug.log*
 
 # Ignore files and folders added by me
 .env
+/spec
