@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_101345) do
+ActiveRecord::Schema.define(version: 2020_09_22_174711) do
 
   create_table "assignments", force: :cascade do |t|
     t.text "task"
@@ -18,6 +18,12 @@ ActiveRecord::Schema.define(version: 2020_09_22_101345) do
     t.integer "programmer_id"
     t.integer "project_id"
     t.integer "comment_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -31,6 +37,15 @@ ActiveRecord::Schema.define(version: 2020_09_22_101345) do
     t.string "phone_number"
     t.datetime "last_login"
     t.boolean "is_project_manager"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "due_date"
+    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
