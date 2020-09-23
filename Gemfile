@@ -40,6 +40,7 @@ group :development, :test do
 
   ####### Gem I will use to learn how to code tests after project is done #######
   gem 'rspec-rails'
+  gem 'database_cleaner'
   ###############################################################################
 end
 
