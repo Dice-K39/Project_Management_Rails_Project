@@ -1,0 +1,24 @@
+<%= form_for programmer do |f| %>
+    <%= f.label :username %>:
+    <%= f.text_field :username, :placeholder => 'Enter Username' %><br />
+
+    <%= f.label :password %>:
+    <%= f.password_field :password, :placeholder => 'Enter Password' %><br />
+
+    <%= f.label 'Confirm Password' %>:
+    <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %><br />
+    
+    <%= f.label :first_name %>:
+    <%= f.text_field :first_name, :placeholder => 'Enter First Name' %><br />
+
+    <%= f.label :last_name %>:
+    <%= f.text_field :last_name, :placeholder => 'Enter Last Name' %><br />
+
+    <%= f.label :email %>:
+    <%= f.text_field :email, :placeholder => 'Enter Email' %><br />
+
+    <%= f.label :phone_number %>:
+    <%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %><br />
+
+    <%= f.submit %>
+<% end %>

@@ -1,0 +1,10 @@
+<%= @programmers.each do |programmer| %>
+    <label>First Name: </label>
+    <%= programmer.first_name %><br />
+
+    <label>Last Name: </label>
+    <%= programmer.last_name %><br />
+
+    <label>Assignment: </label>
+    <%= programmer.assignments %><br />
+<% end %>
