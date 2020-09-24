@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_013724) do
     t.string "email"
     t.string "phone_number"
     t.datetime "last_login"
-    t.boolean "is_project_manager"
+    t.boolean "is_project_manager", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -8,7 +8,7 @@ class CreateProgrammers < ActiveRecord::Migration[6.0]
       t.string :email
       t.string :phone_number
       t.datetime :last_login
-      t.boolean :is_project_manager
+      t.boolean :is_project_manager, default: false
 
       t.timestamps
     end

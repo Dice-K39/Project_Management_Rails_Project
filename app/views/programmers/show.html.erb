@@ -1,3 +1,6 @@
 <%= @programmer.first_name %>
 <%= @programmer.created_at %>
 <%= @programmer.updated_at %>
+
+
+<%= button_to "Delete Account", programmer_path(@programmer), class: 'button is-danger', method: :delete %>

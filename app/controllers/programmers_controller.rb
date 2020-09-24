@@ -1,6 +1,4 @@
 class ProgrammersController < ApplicationController
-    before_action(only: %i[show edit]) {@programmer = Programmer.find_by_id(params[:id])}
-
     def index
         @programmers = Programmer.all
     end
@@ -20,9 +18,11 @@ class ProgrammersController < ApplicationController
     end
 
     def show
+        find_programmer
     end
 
     def edit
+        find_programmer
     end
 
     def update
@@ -35,14 +35,24 @@ class ProgrammersController < ApplicationController
         end
     end
 
-    def delete
+    def destroy
         find_programmer
+
+        if @programmer.delete
+            redirect_to '/'
+        else
+            redirect_to programmer_path(@programmer)
+        end
     end
 
     private
 
     def programmer_params
         params.require(:programmer).permit(:username, :password, :password_confirmation, :first_name, :last_name, :email, :phone_number)
+    end
+
+    def find_programmer
+        @programmer = Programmer.find_by_id(params[:id])
     end
 
     def update_time_and_redirect(programmer)
