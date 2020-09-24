@@ -41,6 +41,8 @@ class ProgrammersController < ApplicationController
         if @programmer.delete
             redirect_to '/'
         else
+            flash[:cannot_delete] = "Error. Account not deleted."
+
             redirect_to programmer_path(@programmer)
         end
     end
