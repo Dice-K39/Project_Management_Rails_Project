@@ -11,7 +11,7 @@ class ProgrammersController < ApplicationController
         programmer = Programmer.new(programmer_params)
 
         if programmer.save
-            login_and_redirect(programmer)
+            last_login_and_redirect(programmer)
         else
             render :new
         end
@@ -29,7 +29,7 @@ class ProgrammersController < ApplicationController
         programmer = Programmer.find_by_id(params[:id])
 
         if programmer.update(programmer_params)
-            login_and_redirect(programmer)
+            last_login_and_redirect(programmer)
         else
             render :edit
         end
@@ -55,7 +55,7 @@ class ProgrammersController < ApplicationController
         @programmer = Programmer.find_by_id(params[:id])
     end
 
-    def login_and_redirect(programmer)
+    def last_login_and_redirect(programmer)
         programmer.update_attribute(:last_login, DateTime.now)
 
         redirect_to programmer_path(programmer)
