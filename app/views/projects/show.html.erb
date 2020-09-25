@@ -1,0 +1,9 @@
+<%= @project.name %>
+<%= @project.description %>
+<%= @project.created_at %>
+<%= @project.updated_at %>
+<%= @project.due_date %>
+<%= @project.status %>
+
+
+<%= button_to "Delete Account", project_path(@project), class: 'button is-danger', method: :delete %>
