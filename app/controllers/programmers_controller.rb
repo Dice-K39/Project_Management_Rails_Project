@@ -11,7 +11,7 @@ class ProgrammersController < ApplicationController
         programmer = Programmer.new(programmer_params)
 
         if programmer.save
-            update_time_and_redirect(programmer)
+            login_and_redirect(programmer)
         else
             render :new
         end
@@ -29,7 +29,7 @@ class ProgrammersController < ApplicationController
         programmer = Programmer.find_by_id(params[:id])
 
         if programmer.update(programmer_params)
-            update_time_and_redirect(programmer)
+            login_and_redirect(programmer)
         else
             render :edit
         end
@@ -41,8 +41,6 @@ class ProgrammersController < ApplicationController
         if @programmer.delete
             redirect_to '/'
         else
-            flash[:cannot_delete] = "Error. Account not deleted."
-
             redirect_to programmer_path(@programmer)
         end
     end
@@ -57,8 +55,8 @@ class ProgrammersController < ApplicationController
         @programmer = Programmer.find_by_id(params[:id])
     end
 
-    def update_time_and_redirect(programmer)
-        programmer.update_attribute(:updated_at, DateTime.now)
+    def login_and_redirect(programmer)
+        programmer.update_attribute(:last_login, DateTime.now)
 
         redirect_to programmer_path(programmer)
     end
