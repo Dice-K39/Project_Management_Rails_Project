@@ -9,4 +9,12 @@ class Assignment < ApplicationRecord
     def full_name
         self.programmer.first_name + ' ' + self.programmer.last_name
     end
+
+    def completed?
+        if self.is_completed
+            'YES'
+        else
+            'NO'
+        end
+    end
 end
