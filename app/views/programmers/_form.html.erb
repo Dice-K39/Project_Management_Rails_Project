@@ -1,5 +1,5 @@
 <%= form_for programmer do |f| %>
-    <%= f.label :username %>:
+    <%= f.label :username %>
     <%= f.text_field :username, :placeholder => 'Enter Username' %><br />
 
     <%= f.label :password %>:
@@ -20,5 +20,5 @@
     <%= f.label :phone_number %>:
     <%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %><br />
 
-    <%= f.submit %>
+    <%= f.submit class: 'button is-primary' %>
 <% end %>

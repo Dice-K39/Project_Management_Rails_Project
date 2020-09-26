@@ -1,0 +1,20 @@
+<% @assignments.each do |assignment| %>
+    <label>Task: </label>
+    <%= assignment.task %><br />
+
+    <label>Assigned At: </label>
+    <%= assignment.assigned_at %><br />
+
+    <label>Completed?: </label>
+    <%= assignment.is_completed %><br />
+
+    <label>Programmer Assigned:</label>
+    <% if assignment.programmer_id != nil %>
+        <%= assignment.fullname %>
+    <% else %>
+        Not Assigned
+    <% end %><br />
+
+    <label>For: </label>
+    <%= assignment.project_id.name %><br />
+<% end %>

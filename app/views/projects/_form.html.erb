@@ -11,5 +11,5 @@
     <%= f.label :status %>:
     <%= f.select(:status, Project.statuses.keys.map {|status| [status.titleize,status]}) %><br />
 
-    <%= f.submit %>
+    <%= f.submit class: 'button is-primary'%>
 <% end %>

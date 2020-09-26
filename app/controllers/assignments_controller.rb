@@ -10,6 +10,7 @@ class AssignmentsController < ApplicationController
     def create
         assignment = Assignment.new(assignment_params)
 
+        byebug
         if assignment.save
             redirect_to assignment_path(assignment)
         else
