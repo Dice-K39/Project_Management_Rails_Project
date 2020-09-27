@@ -9,8 +9,8 @@
     <%= assignment.is_completed %><br />
 
     <label>Programmer Assigned:</label>
-    <% if assignment.programmer_id != nil %>
-        <%= assignment.fullname %>
+    <% if assignment.programmer != nil %>
+        <%= assignment.programmer.full_name %>
     <% else %>
         Not Assigned
     <% end %><br />
