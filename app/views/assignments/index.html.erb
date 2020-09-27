@@ -6,7 +6,11 @@
     <%= assignment.assigned_at %><br />
 
     <label>Completed?: </label>
-    <%= assignment.is_completed %><br />
+    <% if assignment.is_completed == true %>
+        YES
+    <% else %>
+        NO
+    <% end %><br />
 
     <label>Programmer Assigned:</label>
     <% if assignment.programmer != nil %>

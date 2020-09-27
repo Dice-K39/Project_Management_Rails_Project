@@ -1,8 +1,8 @@
 class Assignment < ApplicationRecord
     has_many :comments
     
-    belongs_to :programmer, optional: true
-    belongs_to :project, optional: true
+    belongs_to :programmer
+    belongs_to :project
 
     validates :task, :assigned_at, presence: true
     validates :is_completed, default: false

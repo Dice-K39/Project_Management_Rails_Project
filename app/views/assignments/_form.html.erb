@@ -1,18 +1,43 @@
-<%= form_for assignment do |f| %>
-    <%= f.label :project %>
-    <%= f.collection_select :project_id, Project.all, :id, :name %><br />
+<% if assignment.errors.any? %>
+    <div id='error_explanation'>
+        <h2>
+            <%= pluralize(assignment.errors.count, 'error') %>
+            prohibited this project from being saved:
+        </h2>
 
-    <%= f.label :is_completed %>
-    <%= f.check_box :is_completed %><br />
-
-    <%= f.label :task %>
-    <%= f.text_area :task, placeholder: 'Enter Task' %><br />
-
-    <%= f.label :assigned_at %>
-    <%= f.datetime_field :assigned_at, placeholder: 'Enter Date and Time' %><br />
-
-    <%= f.label 'Programmer Assigned' %>
-    <%= f.collection_select :programmer_id, Programmer.all, :id, :full_name %><br />
-
-    <%= f.submit class: 'button is-primary'%>
+        <ul>
+            <% assignment.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
 <% end %>
+
+    <%= form_for assignment do |f| %>
+    <div class="field<%= ' field_with_errors' if assignment.errors[:project].any? %>">
+        <%= f.label :project %>
+        <%= f.collection_select :project_id, Project.all, :id, :name, include_blank: 'Select a Project' %>
+    </div><br />
+
+    <div class="field<%= ' field_with_errors' if assignment.errors[:is_completed].any? %>">
+        <%= f.label :is_completed %>
+        <%= f.check_box :is_completed %>
+    </div><br />
+
+    <div class="field<%= ' field_with_errors' if assignment.errors[:task].any? %>">
+        <%= f.label :task %>
+        <%= f.text_area :task, placeholder: 'Enter Task' %>
+    </div><br />
+
+    <div class="field<%= ' field_with_errors' if assignment.errors[:assigned_at].any? %>">
+        <%= f.label :assigned_at %>
+        <%= f.datetime_field :assigned_at, placeholder: 'Enter Date and Time' %>
+    </div><br />
+
+    <div class="field<%= ' field_with_errors' if assignment.errors[:programmer_id].any? %>">
+        <%= f.label 'Programmer Assigned:' %>
+        <%= f.collection_select :programmer_id, Programmer.all, :id, :full_name, include_blank: 'Select a Programmer' %>
+    </div><br />
+
+        <%= f.submit class: 'button is-primary'%>
+    <% end %>

@@ -16,38 +16,38 @@
 <%= form_for programmer do |f| %>
     <div class="field<%= ' field_with_errors' if programmer.errors[:username].any? %>">
         <%= f.label :username %>
-        <%= f.text_field :username, :placeholder => 'Enter Username' %><br />
-    </div>
+        <%= f.text_field :username, :placeholder => 'Enter Username' %>
+    </div><br />
 
     <div class="field<%= ' field_with_errors' if programmer.errors[:password].any? %>">
         <%= f.label :password %>:
-        <%= f.password_field :password, :placeholder => 'Enter Password' %><br />
-    </div>
+        <%= f.password_field :password, :placeholder => 'Enter Password' %>
+    </div><br />
 
     <div class="field<%= ' field_with_errors' if programmer.errors[:password_confirmation].any? %>">
         <%= f.label :password_confirmation %>:
-        <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %><br />
-    </div>
+        <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %>
+    </div><br />
 
     <div class="field<%= ' field_with_errors' if programmer.errors[:first_name].any? %>">
         <%= f.label :first_name %>:
-        <%= f.text_field :first_name, :placeholder => 'Enter First Name' %><br />
-    </div>
+        <%= f.text_field :first_name, :placeholder => 'Enter First Name' %><
+    </div><br />
 
     <div class="field<%= ' field_with_errors' if programmer.errors[:last_name].any? %>">
         <%= f.label :last_name %>:
-        <%= f.text_field :last_name, :placeholder => 'Enter Last Name' %><br />
-    </div>
+        <%= f.text_field :last_name, :placeholder => 'Enter Last Name' %>
+    </div><br />
 
     <div class="field<%= ' field_with_errors' if programmer.errors[:email].any? %>">
         <%= f.label :email %>:
-        <%= f.text_field :email, :placeholder => 'Enter Email' %><br />
-    </div>
+        <%= f.text_field :email, :placeholder => 'Enter Email' %>
+    </div><br />
 
     <div class="field<%= ' field_with_errors' if programmer.errors[:phone_number].any? %>">
         <%= f.label :phone_number %>:
-        <%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %><br />
-    </div>
+        <%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %>
+    </div><br />
 
         <%= f.submit class: 'button is-primary' %>
 <% end %>

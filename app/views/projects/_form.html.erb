@@ -16,23 +16,23 @@
 <%= form_for project do |f| %>
     <div class="field<%= ' field_with_errors' if project.errors[:name].any? %>">
         <%= f.label :name %>:
-        <%= f.text_field :name, :placeholder => 'Enter Project Name' %><br />
-    </div>
+        <%= f.text_field :name, :placeholder => 'Enter Project Name' %>
+    </div><br />
 
     <div class="field<%= ' field_with_errors' if project.errors[:description].any? %>">
         <%= f.label :description %>:
-        <%= f.text_area :description, :placeholder => 'Enter Project Description' %><br />
-    </div>
+        <%= f.text_area :description, :placeholder => 'Enter Project Description' %>
+    </div><br />
 
     <div class="field<%= ' field_with_errors' if project.errors[:due_date].any? %>">
         <%= f.label :due_date %>:
-        <%= f.datetime_field :due_date, :placeholder => 'Enter Due Date' %><br />
-    </div>
+        <%= f.datetime_field :due_date, :placeholder => 'Enter Due Date' %>
+    </div><br />
 
     <div class="field<%= ' field_with_errors' if project.errors[:status].any? %>">
         <%= f.label :status %>:
-        <%= f.select(:status, Project.statuses.keys.map {|status| [status.titleize,status]}) %><br />
-    </div>
+        <%= f.select(:status, Project.statuses.keys.map {|status| [status.titleize,status]}) %>
+    </div><br />
 
         <%= f.submit class: 'button is-primary'%>
 <% end %>

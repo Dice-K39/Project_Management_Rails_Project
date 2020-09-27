@@ -8,10 +8,10 @@ class AssignmentsController < ApplicationController
     end
 
     def create
-        assignment = Assignment.new(assignment_params)
+        @assignment = Assignment.new(assignment_params)
 
-        if assignment.save
-            redirect_to assignment_path(assignment)
+        if @assignment.save
+            redirect_to assignment_path(@assignment)
         else
             render :new
         end
@@ -26,10 +26,10 @@ class AssignmentsController < ApplicationController
     end
 
     def update
-        assignment = Assignment.find_by_id(params[:id])
+        @assignment = Assignment.find_by_id(params[:id])
 
-        if assignment.update(assignment_params)
-            redirect_to assignment_path(assignment)
+        if @assignment.update(assignment_params)
+            redirect_to assignment_path(@assignment)
         else
             render :edit
         end
