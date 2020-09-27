@@ -4,6 +4,7 @@ class Project < ApplicationRecord
 
     enum status: ['PLANNING', 'IN_PROGRESS', 'COMPLETED', 'OVERDUE']
 
-    validates :name, :due_date, :status, presence: true
+    validates :name, presence: true, uniqueness: true
+    validates :due_date, :status, presence: true
     validates :description, length: {minimum: 20}
 end

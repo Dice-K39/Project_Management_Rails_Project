@@ -28,10 +28,12 @@ class ProgrammersController < ApplicationController
     end
 
     def update
-        programmer = Programmer.find_by_id(params[:id])
+        @programmer = Programmer.find_by_id(params[:id])
 
-        if programmer.update(programmer_params)
-            last_login_and_redirect(programmer)
+        if @programmer.valid?
+            @programmer.update(programmer_params)
+            
+            last_login_and_redirect(@programmer)
         else
             render :edit
         end

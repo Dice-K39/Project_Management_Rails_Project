@@ -1,15 +1,38 @@
+<% if project.errors.any? %>
+    <div id='error_explanation'>
+        <h2>
+            <%= pluralize(project.errors.count, 'error') %>
+            prohibited this project from being saved:
+        </h2>
+
+        <ul>
+            <% project.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
 <%= form_for project do |f| %>
-    <%= f.label :name %>:
-    <%= f.text_field :name, :placeholder => 'Enter Project Name' %><br />
+    <div class="field<%= ' field_with_errors' if project.errors[:name].any? %>">
+        <%= f.label :name %>:
+        <%= f.text_field :name, :placeholder => 'Enter Project Name' %><br />
+    </div>
 
-    <%= f.label :description %>:
-    <%= f.text_area :description, :placeholder => 'Enter Project Description' %><br />
-    
-    <%= f.label :due_date %>:
-    <%= f.datetime_field :due_date, :placeholder => 'Enter Due Date' %><br />
+    <div class="field<%= ' field_with_errors' if project.errors[:description].any? %>">
+        <%= f.label :description %>:
+        <%= f.text_area :description, :placeholder => 'Enter Project Description' %><br />
+    </div>
 
-    <%= f.label :status %>:
-    <%= f.select(:status, Project.statuses.keys.map {|status| [status.titleize,status]}) %><br />
+    <div class="field<%= ' field_with_errors' if project.errors[:due_date].any? %>">
+        <%= f.label :due_date %>:
+        <%= f.datetime_field :due_date, :placeholder => 'Enter Due Date' %><br />
+    </div>
 
-    <%= f.submit class: 'button is-primary'%>
+    <div class="field<%= ' field_with_errors' if project.errors[:status].any? %>">
+        <%= f.label :status %>:
+        <%= f.select(:status, Project.statuses.keys.map {|status| [status.titleize,status]}) %><br />
+    </div>
+
+        <%= f.submit class: 'button is-primary'%>
 <% end %>
