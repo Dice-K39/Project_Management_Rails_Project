@@ -1,24 +1,53 @@
-<%= form_for programmer do |f| %>
-    <%= f.label :username %>
-    <%= f.text_field :username, :placeholder => 'Enter Username' %><br />
+<% if programmer.errors.any? %>
+    <div id='error_explanation'>
+        <h2>
+            <%= pluralize(programmer.errors.count, 'error') %>
+            prohibited this programmer from being saved:
+        </h2>
 
-    <%= f.label :password %>:
-    <%= f.password_field :password, :placeholder => 'Enter Password' %><br />
+        <ul>
+            <% programmer.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
 
-    <%= f.label 'Confirm Password' %>:
-    <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %><br />
-    
-    <%= f.label :first_name %>:
-    <%= f.text_field :first_name, :placeholder => 'Enter First Name' %><br />
+    <%= form_for programmer do |f| %>
+        <div class="field<%= ' field_with_errors' if programmer.errors[:username].any? %>">
+            <%= f.label :username %>
+            <%= f.text_field :username, :placeholder => 'Enter Username' %><br />
+        </div>
 
-    <%= f.label :last_name %>:
-    <%= f.text_field :last_name, :placeholder => 'Enter Last Name' %><br />
+        <div class="field<%= ' field_with_errors' if programmer.errors[:password].any? %>">
+            <%= f.label :password %>:
+            <%= f.password_field :password, :placeholder => 'Enter Password' %><br />
+        </div>
 
-    <%= f.label :email %>:
-    <%= f.text_field :email, :placeholder => 'Enter Email' %><br />
+        <div class="field<%= ' field_with_errors' if programmer.errors[:password_confirmation].any? %>">
+            <%= f.label :password_confirmation %>:
+            <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %><br />
+        </div>
 
-    <%= f.label :phone_number %>:
-    <%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %><br />
+        <div class="field<%= ' field_with_errors' if programmer.errors[:first_name].any? %>">
+            <%= f.label :first_name %>:
+            <%= f.text_field :first_name, :placeholder => 'Enter First Name' %><br />
+        </div>
 
-    <%= f.submit class: 'button is-primary' %>
+        <div class="field<%= ' field_with_errors' if programmer.errors[:last_name].any? %>">
+            <%= f.label :last_name %>:
+            <%= f.text_field :last_name, :placeholder => 'Enter Last Name' %><br />
+        </div>
+
+        <div class="field<%= ' field_with_errors' if programmer.errors[:email].any? %>">
+            <%= f.label :email %>:
+            <%= f.text_field :email, :placeholder => 'Enter Email' %><br />
+        </div>
+
+        <div class="field<%= ' field_with_errors' if programmer.errors[:phone_number].any? %>">
+            <%= f.label :phone_number %>:
+            <%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %><br />
+        </div>
+
+            <%= f.submit class: 'button is-primary' %>
+    <% end %>
 <% end %>

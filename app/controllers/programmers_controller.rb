@@ -8,10 +8,12 @@ class ProgrammersController < ApplicationController
     end
 
     def create
-        programmer = Programmer.new(programmer_params)
+        @programmer = Programmer.new(programmer_params)
 
-        if programmer.save
-            last_login_and_redirect(programmer)
+        if @programmer.valid?
+            @programmer.save
+
+            last_login_and_redirect(@programmer)
         else
             render :new
         end
