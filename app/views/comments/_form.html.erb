@@ -1,0 +1,15 @@
+<%= form_for comment do |f| %>
+    <%= f.label :assignment %>
+    <%= f.collection_select :assignment_id, Assignment.all, :id, :task %><br />
+
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: 'Enter Title' %><br />
+
+    <%= f.label :content %>
+    <%= f.text_area :content, placeholder: 'Enter Content' %><br />
+
+    <%= f.label :content %>
+    <%= f.text_area :content, placeholder: 'Enter Content' %><br />
+
+    <%= f.submit class: 'button is-primary'%>
+<% end %>

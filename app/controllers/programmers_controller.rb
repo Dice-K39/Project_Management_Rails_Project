@@ -48,7 +48,7 @@ class ProgrammersController < ApplicationController
     private
 
     def programmer_params
-        params.require(:programmer).permit(:username, :password, :password_confirmation, :first_name, :last_name, :email, :phone_number)
+        params.require(:programmer).permit(:username, :password, :password_confirmation, :first_name, :last_name, :email, :phone_number, :is_project_manager)
     end
 
     def find_programmer

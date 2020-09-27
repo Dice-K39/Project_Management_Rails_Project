@@ -7,6 +7,7 @@ class Programmer < ApplicationRecord
     validates :username, :email, presence: true, uniqueness: true
     validates :password, :first_name, :last_name, presence: true
     validates :phone_number, presence: true, length: {is: 10}
+    validates :is_project_manager, default: false
 
     def full_name
         self.first_name + ' ' + self.last_name

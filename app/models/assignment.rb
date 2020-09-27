@@ -4,7 +4,8 @@ class Assignment < ApplicationRecord
     belongs_to :programmer, optional: true
     belongs_to :project, optional: true
 
-    validates :task, :assigned_at, :is_completed, presence: true
+    validates :task, :assigned_at, presence: true
+    validates :is_completed, default: false
 
     def full_name
         self.programmer.first_name + ' ' + self.programmer.last_name
