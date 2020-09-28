@@ -21,10 +21,12 @@ class CommentsController < ApplicationController
     end
 
     def show
-        @comment = Comment.find_by_id(params[:id])
+        assignment = Assignment.find_by_id(params[:assignment_id])
+        @comment = assignment.comments.find_by_id(params[:id])
     end
 
     def edit
+        @assignment = Assignment.find_by_id(params[:assignment_id])
         @comment = Comment.find_by_id(params[:id])
     end
 
@@ -32,7 +34,7 @@ class CommentsController < ApplicationController
         @comment = Comment.find_by_id(params[:id])
 
         if @comment.update(comment_params)
-            redirect_to assignment_comment_path
+            redirect_to assignment_comments_path(@comment.assignment_id)
         else
             render :edit
         end
