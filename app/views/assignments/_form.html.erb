@@ -14,30 +14,30 @@
 <% end %>
 
     <%= form_for assignment do |f| %>
-    <div class="field<%= ' field_with_errors' if assignment.errors[:project].any? %>">
-        <%= f.label :project %>
-        <%= f.collection_select :project_id, Project.all, :id, :name, include_blank: 'Select a Project' %>
-    </div><br />
+        <div>
+            <%= f.label :project %>
+            <%= f.collection_select :project_id, Project.all, :id, :name, include_blank: 'Select a Project' %>
+        </div><br />
 
-    <div class="field<%= ' field_with_errors' if assignment.errors[:is_completed].any? %>">
-        <%= f.label :is_completed %>
-        <%= f.check_box :is_completed %>
-    </div><br />
+        <div>
+            <%= f.label :is_completed %>
+            <%= f.check_box :is_completed %>
+        </div>
 
-    <div class="field<%= ' field_with_errors' if assignment.errors[:task].any? %>">
-        <%= f.label :task %>
-        <%= f.text_area :task, placeholder: 'Enter Task' %>
-    </div><br />
+        <div>
+            <%= f.label :task %>
+            <%= f.text_area :task, placeholder: 'Enter Task' %>
+        </div>
 
-    <div class="field<%= ' field_with_errors' if assignment.errors[:assigned_at].any? %>">
-        <%= f.label :assigned_at %>
-        <%= f.datetime_field :assigned_at, placeholder: 'Enter Date and Time' %>
-    </div><br />
+        <div>
+            <%= f.label :assigned_at %>
+            <%= f.datetime_field :assigned_at, placeholder: 'Enter Date and Time' %>
+        </div>
 
-    <div class="field<%= ' field_with_errors' if assignment.errors[:programmer_id].any? %>">
-        <%= f.label 'Programmer Assigned:' %>
-        <%= f.collection_select :programmer_id, Programmer.all, :id, :full_name, include_blank: 'Select a Programmer' %>
-    </div><br />
+        <div>
+            <%= f.label 'Programmer Assigned:' %>
+            <%= f.collection_select :programmer_id, Programmer.all, :id, :full_name, include_blank: 'Select a Programmer' %>
+        </div>
 
         <%= f.submit class: 'button is-primary'%>
     <% end %>

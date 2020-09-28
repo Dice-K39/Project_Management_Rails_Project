@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
 
         if @comment.valid?
             @comment.save
-byebug
+
             redirect_to assignment_comments_path(@comment.assignment_id) #@comment 
         else
             render :new
@@ -32,7 +32,7 @@ byebug
         @comment = Comment.find_by_id(params[:id])
 
         if @comment.update(comment_params)
-            redirect_to assignment_comments_path
+            redirect_to assignment_comment_path
         else
             render :edit
         end

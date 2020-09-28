@@ -16,49 +16,49 @@
 <%= form_for programmer do |f| %>
     <table>
         <tr>
-            <div class="field<%= ' field_with_errors' if programmer.errors[:username].any? %>">
+            <div>
                 <td><%= f.label 'Username:' %></td>
                 <td><%= f.text_field :username, :placeholder => 'Enter Username' %></td>
             </div>
         </tr>
 
         <tr>
-            <div class="field<%= ' field_with_errors' if programmer.errors[:password].any? %>">
+            <div>
                 <td><%= f.label 'Password:' %></td>
                 <td><%= f.password_field :password, :placeholder => 'Enter Password' %></td>
             </div>
         </tr>
 
         <tr>
-            <div class="field<%= ' field_with_errors' if programmer.errors[:password_confirmation].any? %>">
+            <div>
                 <td><%= f.label 'Password Confirmation:' %></td>
                 <td><%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %></td>
             </div>
         </tr>
 
         <tr>
-            <div class="field<%= ' field_with_errors' if programmer.errors[:first_name].any? %>">
+            <div>
                 <td><%= f.label 'First Name:' %></td>
                 <td><%= f.text_field :first_name, :placeholder => 'Enter First Name' %></td>
             </div>
         </tr>
 
         <tr>
-            <div class="field<%= ' field_with_errors' if programmer.errors[:last_name].any? %>">
+            <div>
                 <td><%= f.label 'Last Name:' %></td>
                 <td><%= f.text_field :last_name, :placeholder => 'Enter Last Name' %></td>
             </div>
         </tr>
 
         <tr>
-            <div class="field<%= ' field_with_errors' if programmer.errors[:email].any? %>">
+            <div>
                 <td><%= f.label 'Email:' %></td>
                 <td><%= f.text_field :email, :placeholder => 'Enter Email' %></td>
             </div>
         </tr>
 
         <tr>
-            <div class="field<%= ' field_with_errors' if programmer.errors[:phone_number].any? %>">
+            <div>
                 <td><%= f.label 'Phone Number:' %></td>
                 <td><%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %></td>
             </div>

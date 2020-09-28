@@ -14,6 +14,8 @@
 <% end %>
 
 <%= form_for [assignment, comment] do |f| %>
+    <%= f.hidden_field :assignment_id %>
+    
     <div>
         <%= f.label :title %>
         <%= f.text_field :title, placeholder: 'Enter Title' %>

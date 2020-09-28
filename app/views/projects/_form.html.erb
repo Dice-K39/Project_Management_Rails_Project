@@ -14,22 +14,22 @@
 <% end %>
 
 <%= form_for project do |f| %>
-    <div class="field<%= ' field_with_errors' if project.errors[:name].any? %>">
+    <div>
         <%= f.label :name %>:
         <%= f.text_field :name, :placeholder => 'Enter Project Name' %>
     </div>
 
-    <div class="field<%= ' field_with_errors' if project.errors[:description].any? %>">
+    <div>
         <%= f.label :description %>:
         <%= f.text_area :description, :placeholder => 'Enter Project Description' %>
     </div>
 
-    <div class="field<%= ' field_with_errors' if project.errors[:due_date].any? %>">
+    <div>
         <%= f.label :due_date %>:
         <%= f.datetime_field :due_date, :placeholder => 'Enter Due Date' %>
     </div>
 
-    <div class="field<%= ' field_with_errors' if project.errors[:status].any? %>">
+    <div>
         <%= f.label :status %>:
         <%= f.select(:status, Project.statuses.keys.map {|status| [status.titleize,status]}) %>
     </div>
