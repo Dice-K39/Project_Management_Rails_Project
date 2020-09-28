@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_003905) do
     t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_completed", default: false
+    t.boolean "is_completed", default: false, null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_003905) do
     t.string "email"
     t.string "phone_number"
     t.datetime "last_login"
-    t.boolean "is_project_manager", default: false
+    t.boolean "is_project_manager", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

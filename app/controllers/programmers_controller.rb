@@ -13,6 +13,8 @@ class ProgrammersController < ApplicationController
         if @programmer.valid?
             @programmer.save
 
+            session[:programmer_id] = @programmer.id
+
             last_login_and_redirect(@programmer)
         else
             render :new

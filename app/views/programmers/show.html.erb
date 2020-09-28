@@ -1,6 +1,14 @@
-<%= @programmer.first_name %>
-<%= @programmer.created_at %>
-<%= @programmer.updated_at %>
+<div>
+    <%= @programmer.first_name %>
+</div>
+
+<div>
+    <%= @programmer.created_at %>
+</div>
+
+<div>
+    <%= @programmer.updated_at %>
+</div>
 
 
 <%= button_to "Delete Programmer", programmer_path(@programmer), class: 'button is-danger', method: :delete %>
