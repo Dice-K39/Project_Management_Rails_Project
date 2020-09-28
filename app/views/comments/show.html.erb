@@ -9,3 +9,5 @@
 
 <label>Comment: </label>
 <%= @comment.content %><br /><br />
+
+<%= button_to "Delete Comment", assignment_comment_path(@comment), class: 'button is-danger', method: :delete %>

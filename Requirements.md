@@ -18,9 +18,9 @@
 
 [ ] - You must include and make use of a nested resource with the appropriate RESTful URLs.
 
-   [ ] - You must include a nested new route with form that relates to the parent resource
+   [X] - You must include a nested new route with form that relates to the parent resource
 
-   [ ] - You must include a nested index or show route
+   [X] - You must include a nested index or show route
 
 [X] - Your forms should correctly display validation errors.
 

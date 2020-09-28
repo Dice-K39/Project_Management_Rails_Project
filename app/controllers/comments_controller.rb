@@ -41,12 +41,13 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find_by_id(params[:id])
+        assignment = Assignment.find_by_id(params[:assignment_id])
+        comment = Comment.find_by_id(params[:id])
 
-        if @comment.delete
-            redirect_to '/'
+        if comment.delete
+            redirect_to assignment_comments_path(comment.assignment_id)
         else
-            redirect_to comment_path(@comment)
+            redirect_to assignment_comments_path(comment)
         end
     end
 
