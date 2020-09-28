@@ -16,7 +16,7 @@
 
 [ ] - Your authentication system must also allow login from some other service. Facebook, Twitter, Foursquare, Github, etc...
 
-[ ] - You must include and make use of a nested resource with the appropriate RESTful URLs.
+[X] - You must include and make use of a nested resource with the appropriate RESTful URLs.
 
    [X] - You must include a nested new route with form that relates to the parent resource
 

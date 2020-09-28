@@ -1,4 +1,7 @@
 <% @assignments.each do |assignment| %>
+    <label>For: </label>
+    <%= assignment.project.name %><br />
+
     <label>Task: </label>
     <%= assignment.task %><br />
 
@@ -16,9 +19,6 @@
     <% if assignment.programmer != nil %>
         <%= assignment.programmer.full_name %>
     <% else %>
-        Not Assigned
-    <% end %><br />
-
-    <label>For: </label>
-    <%= assignment.project.name %><br /><br />
+        None
+    <% end %><br /><br />
 <% end %>
