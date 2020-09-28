@@ -1,42 +1,45 @@
 class CommentsController < ApplicationController
     def index
-        @comments = Comment.all
+        @comments = Assignment.find_by_id(params[:assignment_id]).comments
     end
 
     def new
-        @comment = Comment.new
+        @assignment = Assignment.find_by_id(params[:assignment_id])
+        @comment = Comment.new(assignment_id: params[:assignment_id])
     end
 
     def create
-        comment = Comment.new(comment_params)
+        @comment = Comment.new(comment_params) #current_user.comments.new(comment_params.merge(params[:assignment_id]))
 
-        if comment.save
-            redirect_to comment_path(comment)
+        if @comment.valid?
+            @comment.save
+byebug
+            redirect_to assignment_comments_path(@comment.assignment_id) #@comment 
         else
             render :new
         end
     end
 
     def show
-        find_comment
+        @comment = Comment.find_by_id(params[:id])
     end
 
     def edit
-        find_comment
+        @comment = Comment.find_by_id(params[:id])
     end
 
     def update
-        comment = Comment.find_by_id(params[:id])
+        @comment = Comment.find_by_id(params[:id])
 
-        if comment.update(comment_params)
-            redirect_to comment_path(comment)
+        if @comment.update(comment_params)
+            redirect_to assignment_comments_path
         else
             render :edit
         end
     end
 
     def destroy
-        find_comment
+        @comment = Comment.find_by_id(params[:id])
 
         if @comment.delete
             redirect_to '/'
@@ -49,9 +52,5 @@ class CommentsController < ApplicationController
 
     def comment_params
         params.require(:comment).permit(:title, :content, :assignment_id)
-    end
-
-    def find_comment
-        @comment = Comment.find_by_id(params[:id])
     end
 end

@@ -14,40 +14,56 @@
 <% end %>
 
 <%= form_for programmer do |f| %>
-    <div class="field<%= ' field_with_errors' if programmer.errors[:username].any? %>">
-        <%= f.label :username %>
-        <%= f.text_field :username, :placeholder => 'Enter Username' %>
-    </div><br />
+    <table>
+        <tr>
+            <div class="field<%= ' field_with_errors' if programmer.errors[:username].any? %>">
+                <td><%= f.label 'Username:' %></td>
+                <td><%= f.text_field :username, :placeholder => 'Enter Username' %></td>
+            </div>
+        </tr>
 
-    <div class="field<%= ' field_with_errors' if programmer.errors[:password].any? %>">
-        <%= f.label :password %>:
-        <%= f.password_field :password, :placeholder => 'Enter Password' %>
-    </div><br />
+        <tr>
+            <div class="field<%= ' field_with_errors' if programmer.errors[:password].any? %>">
+                <td><%= f.label 'Password:' %></td>
+                <td><%= f.password_field :password, :placeholder => 'Enter Password' %></td>
+            </div>
+        </tr>
 
-    <div class="field<%= ' field_with_errors' if programmer.errors[:password_confirmation].any? %>">
-        <%= f.label :password_confirmation %>:
-        <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %>
-    </div><br />
+        <tr>
+            <div class="field<%= ' field_with_errors' if programmer.errors[:password_confirmation].any? %>">
+                <td><%= f.label 'Password Confirmation:' %></td>
+                <td><%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %></td>
+            </div>
+        </tr>
 
-    <div class="field<%= ' field_with_errors' if programmer.errors[:first_name].any? %>">
-        <%= f.label :first_name %>:
-        <%= f.text_field :first_name, :placeholder => 'Enter First Name' %><
-    </div><br />
+        <tr>
+            <div class="field<%= ' field_with_errors' if programmer.errors[:first_name].any? %>">
+                <td><%= f.label 'First Name:' %></td>
+                <td><%= f.text_field :first_name, :placeholder => 'Enter First Name' %></td>
+            </div>
+        </tr>
 
-    <div class="field<%= ' field_with_errors' if programmer.errors[:last_name].any? %>">
-        <%= f.label :last_name %>:
-        <%= f.text_field :last_name, :placeholder => 'Enter Last Name' %>
-    </div><br />
+        <tr>
+            <div class="field<%= ' field_with_errors' if programmer.errors[:last_name].any? %>">
+                <td><%= f.label 'Last Name:' %></td>
+                <td><%= f.text_field :last_name, :placeholder => 'Enter Last Name' %></td>
+            </div>
+        </tr>
 
-    <div class="field<%= ' field_with_errors' if programmer.errors[:email].any? %>">
-        <%= f.label :email %>:
-        <%= f.text_field :email, :placeholder => 'Enter Email' %>
-    </div><br />
+        <tr>
+            <div class="field<%= ' field_with_errors' if programmer.errors[:email].any? %>">
+                <td><%= f.label 'Email:' %></td>
+                <td><%= f.text_field :email, :placeholder => 'Enter Email' %></td>
+            </div>
+        </tr>
 
-    <div class="field<%= ' field_with_errors' if programmer.errors[:phone_number].any? %>">
-        <%= f.label :phone_number %>:
-        <%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %>
-    </div><br />
-
-        <%= f.submit class: 'button is-primary' %>
+        <tr>
+            <div class="field<%= ' field_with_errors' if programmer.errors[:phone_number].any? %>">
+                <td><%= f.label 'Phone Number:' %></td>
+                <td><%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %></td>
+            </div>
+        </tr>
+</table>
+    
+    <%= f.submit class: 'button is-primary' %>
 <% end %>

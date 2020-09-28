@@ -20,11 +20,11 @@ class ProgrammersController < ApplicationController
     end
 
     def show
-        find_programmer
+        @programmer = Programmer.find_by_id(params[:id])
     end
 
     def edit
-        find_programmer
+        @programmer = Programmer.find_by_id(params[:id])
     end
 
     def update
@@ -32,7 +32,7 @@ class ProgrammersController < ApplicationController
 
         if @programmer.valid?
             @programmer.update(programmer_params)
-            
+
             last_login_and_redirect(@programmer)
         else
             render :edit
@@ -40,12 +40,12 @@ class ProgrammersController < ApplicationController
     end
 
     def destroy
-        find_programmer
+        programmer = Programmer.find_by_id(params[:id])
 
-        if @programmer.delete
+        if programmer.delete
             redirect_to '/'
         else
-            redirect_to programmer_path(@programmer)
+            redirect_to programmer_path(programmer)
         end
     end
 
@@ -53,10 +53,6 @@ class ProgrammersController < ApplicationController
 
     def programmer_params
         params.require(:programmer).permit(:username, :password, :password_confirmation, :first_name, :last_name, :email, :phone_number, :is_project_manager)
-    end
-
-    def find_programmer
-        @programmer = Programmer.find_by_id(params[:id])
     end
 
     def last_login_and_redirect(programmer)

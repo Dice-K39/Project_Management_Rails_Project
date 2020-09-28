@@ -22,11 +22,11 @@
 
    [ ] - You must include a nested index or show route
 
-[ ] - Your forms should correctly display validation errors.
+[X] - Your forms should correctly display validation errors.
 
-   [ ] - Your fields should be enclosed within a fields_with_errors class
+   [X] - Your fields should be enclosed within a fields_with_errors class
 
-   [ ] - Error messages describing the validation failures must be present within the view.
+   [X] - Error messages describing the validation failures must be present within the view.
 
 [ ] - Your application must be, within reason, a DRY (Do-Not-Repeat-Yourself) rails app.
 
