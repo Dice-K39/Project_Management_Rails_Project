@@ -13,6 +13,29 @@
   </head>
 
   <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a href='/' class="navbar-item">
+        Home
+      </a>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+        <div class="navbar-item">
+            <div class="buttons">
+              <% if !current_programmer %>
+                <a href='/programmers/new' class="button is-primary">Create Account</a>
+                <a href='/login' class="button is-light">Login</a>
+              <% else %>
+                <%= link_to 'Logout', logout_path, class: 'button is-danger', method: 'post' %>
+              <% end %>
+            </div>
+        </div>
+    </div>
+</nav>
+
     <% flash.keys.each do |type| %>
       <div class="text-center alert alert-warning">
         <%= flash[type] %>

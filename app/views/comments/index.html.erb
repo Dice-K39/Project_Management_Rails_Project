@@ -6,9 +6,8 @@
     <%= comment.assignment.task %><br />
 
     <label>Comment Title: </label>
-    <%= comment.title %><br />
+    <%= link_to comment.title, assignment_comment_path(comment.assignment.id, comment.id) %><br />
 
     <label>Comment: </label>
     <%= comment.content %><br /><br />
-
 <% end %>

@@ -9,12 +9,16 @@ class CommentsController < ApplicationController
     end
 
     def create
-        @comment = Comment.new(comment_params) #current_user.comments.new(comment_params.merge(params[:assignment_id]))
+        assignment = current_programmer.assignments.find_by_id(params[:assignment_id])
+        comment = Comment.new(comment_params)
+        # comment = current_programmer.assignments(params[:assignment_id]).comments.new(comment_params.merge(params[:assignment_id]))
+        # comment = current_programmer.comments.new(comment_params.merge(params[:assignment_id])) #Comment.new(comment_params)
+        comment[:assignment_id] = assignment.id
 
-        if @comment.valid?
-            @comment.save
+        if comment.valid?
+            comment.save
 
-            redirect_to assignment_comments_path(@comment.assignment_id) #@comment 
+            redirect_to assignment_comments_path(comment.assignment_id) #@comment 
         else
             render :new
         end

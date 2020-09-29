@@ -1,9 +1,20 @@
-<%= @project.name %>
-<%= @project.description %>
-<%= @project.created_at %>
-<%= @project.updated_at %>
-<%= @project.due_date %>
-<%= @project.status %>
+<label>Project Name: </label>
+<%= @project.name %><br />
+
+<label>Description: </label>
+<%= @project.description %><br />
+
+<label>Created at: </label>
+<%= @project.format_created_at %><br />
+
+<label>Updated at: </label>
+<%= @project.format_updated_at %><br />
+
+<label>Due Date: </label>
+<%= @project.due_date.strftime("%B %e, %Y at %l:%M%p") %><br />
+
+<label>Status: </label>
+<%= @project.status %><br />
 
 
-<%= button_to "Delete Account", project_path(@project), class: 'button is-danger', method: :delete %>
+<%= button_to "Delete Project", project_path(@project), class: 'button is-danger', method: :delete %>
