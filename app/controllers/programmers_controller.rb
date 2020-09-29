@@ -31,7 +31,6 @@ class ProgrammersController < ApplicationController
 
     def update
         programmer = Programmer.find_by_id(params[:id])
-        byebug
 
         if programmer.update(programmer_params)
             last_login_and_redirect(programmer)

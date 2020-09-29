@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   post '/logout' => 'sessions#destroy'
 
+  resources :programmers do
+    resources :assignments
+  end
+
   resources :assignments, only: [:show, :index] do
     resources :comments
   end

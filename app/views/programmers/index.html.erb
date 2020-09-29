@@ -1,10 +1,12 @@
 <% @programmers.each do |programmer| %>
-    <label>First Name: </label>
-    <%= programmer.first_name %><br />
-
-    <label>Last Name: </label>
-    <%= programmer.last_name %><br />
+    <label>Full Name: </label>
+    <%= programmer.full_name %><br /><br />
 
     <label>Assignment: </label>
-    <%= programmer.assignments %><br /><br />
+        <ul>
+            <% programmer.assignments.each do |assignment| %>
+                <li><%= assignment.task %></li>
+            <% end %>
+        </ul>
+    <br /><br />
 <% end %>
