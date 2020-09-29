@@ -12,4 +12,16 @@ class Programmer < ApplicationRecord
     def full_name
         self.first_name + ' ' + self.last_name
     end
+
+    def format_created_at
+        self.created_at.strftime("%B %e, %Y at %l:%M%p")
+    end
+
+    def format_updated_at
+        self.updated_at.strftime("%B %e, %Y at %l:%M%p")
+    end
+
+    def format_last_login
+        self.last_login.strftime("%B %e, %Y at %l:%M%p")
+    end
 end

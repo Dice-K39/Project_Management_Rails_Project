@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
         if programmer && programmer.authenticate(params[:session][:password])
             session[:programmer_id] = programmer.id
-byebug
+            
             redirect_to programmer_path(programmer)
         else
             flash[:no_account] = 'Invalid username/password combination'

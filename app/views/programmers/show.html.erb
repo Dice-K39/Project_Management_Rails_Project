@@ -1,13 +1,21 @@
 <div>
+    <label>First Name: </label>
     <%= @programmer.first_name %>
 </div>
 
 <div>
-    <%= @programmer.created_at %>
+    <label>Last Login At: </label>
+    <%= @programmer.format_last_login %>
 </div>
 
 <div>
-    <%= @programmer.updated_at %>
+    <label>Created At: </label>
+    <%= @programmer.format_created_at %>
+</div>
+
+<div>
+    <label>Updated At: </label>
+    <%= @programmer.format_updated_at %>
 </div>
 
 

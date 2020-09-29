@@ -8,14 +8,14 @@ class ProgrammersController < ApplicationController
     end
 
     def create
-        @programmer = Programmer.new(programmer_params)
+        programmer = Programmer.new(programmer_params)
 
-        if @programmer.valid?
-            @programmer.save
+        if programmer.valid?
+            programmer.save
 
-            session[:programmer_id] = @programmer.id
+            session[:programmer_id] = programmer.id
 
-            last_login_and_redirect(@programmer)
+            last_login_and_redirect(programmer)
         else
             render :new
         end
@@ -30,12 +30,11 @@ class ProgrammersController < ApplicationController
     end
 
     def update
-        @programmer = Programmer.find_by_id(params[:id])
+        programmer = Programmer.find_by_id(params[:id])
+        byebug
 
-        if @programmer.valid?
-            @programmer.update(programmer_params)
-
-            last_login_and_redirect(@programmer)
+        if programmer.update(programmer_params)
+            last_login_and_redirect(programmer)
         else
             render :edit
         end
