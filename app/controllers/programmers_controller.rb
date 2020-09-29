@@ -1,13 +1,19 @@
 class ProgrammersController < ApplicationController
     def index
+        if_not_logged_in_redirect_to_login
+
         @programmers = Programmer.all
     end
 
     def new
+        if_not_logged_in_redirect_to_login
+
         @programmer = Programmer.new
     end
 
     def create
+        if_not_logged_in_redirect_to_login
+
         programmer = Programmer.new(programmer_params)
 
         if programmer.valid?
@@ -22,14 +28,20 @@ class ProgrammersController < ApplicationController
     end
 
     def show
+        if_not_logged_in_redirect_to_login
+
         @programmer = Programmer.find_by_id(params[:id])
     end
 
     def edit
+        if_not_logged_in_redirect_to_login
+
         @programmer = Programmer.find_by_id(params[:id])
     end
 
     def update
+        if_not_logged_in_redirect_to_login
+
         programmer = Programmer.find_by_id(params[:id])
 
         if programmer.update(programmer_params)
@@ -40,6 +52,8 @@ class ProgrammersController < ApplicationController
     end
 
     def destroy
+        if_not_logged_in_redirect_to_login
+        
         programmer = Programmer.find_by_id(params[:id])
 
         if programmer.delete

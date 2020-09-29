@@ -1,13 +1,19 @@
 class ProjectsController < ApplicationController
     def index
+        if_not_logged_in_redirect_to_login
+
         @projects = Project.all
     end
 
     def new
+        if_not_logged_in_redirect_to_login
+
         @project = Project.new
     end
 
     def create
+        if_not_logged_in_redirect_to_login
+
         @project = Project.new(project_params)
 
         if @project.valid?
@@ -20,14 +26,20 @@ class ProjectsController < ApplicationController
     end
 
     def show
+        if_not_logged_in_redirect_to_login
+
         find_project
     end
 
     def edit
+        if_not_logged_in_redirect_to_login
+
         find_project
     end
 
     def update
+        if_not_logged_in_redirect_to_login
+
         @project = Project.find_by_id(params[:id])
 
         if @project.valid?
@@ -40,6 +52,8 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
+        if_not_logged_in_redirect_to_login
+        
         find_project
 
         if @project.delete

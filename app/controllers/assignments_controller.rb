@@ -1,13 +1,19 @@
 class AssignmentsController < ApplicationController
     def index
+        if_not_logged_in_redirect_to_login
+        
         @assignments = Assignment.all
     end
 
     def new
+        if_not_logged_in_redirect_to_login
+
         @assignment = Assignment.new
     end
 
     def create
+        if_not_logged_in_redirect_to_login
+
         @assignment = Assignment.new(assignment_params)
 
         if @assignment.save
@@ -18,14 +24,20 @@ class AssignmentsController < ApplicationController
     end
 
     def show
+        if_not_logged_in_redirect_to_login
+
         find_assignment
     end
 
     def edit
+        if_not_logged_in_redirect_to_login
+
         find_assignment
     end
 
     def update
+        if_not_logged_in_redirect_to_login
+
         @assignment = Assignment.find_by_id(params[:id])
 
         if @assignment.update(assignment_params)
@@ -36,6 +48,8 @@ class AssignmentsController < ApplicationController
     end
 
     def destroy
+        if_not_logged_in_redirect_to_login
+        
         find_assignment
 
         if @assignment.delete

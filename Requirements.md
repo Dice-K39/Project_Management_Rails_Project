@@ -12,7 +12,7 @@
 
 [ ] - You must include at least one class level ActiveRecord scope method. a. Your scope method must be chainable, meaning that you must use ActiveRecord Query methods within it (such as .where and .order) rather than native ruby methods (such as #find_all or #sort).
 
-[ ] - Your application must provide standard user authentication, including signup, login, logout, and passwords.
+[X] - Your application must provide standard user authentication, including signup, login, logout, and passwords.
 
 [ ] - Your authentication system must also allow login from some other service. Facebook, Twitter, Foursquare, Github, etc...
 
