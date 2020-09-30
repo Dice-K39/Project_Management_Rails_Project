@@ -20,6 +20,18 @@ class SessionsController < ApplicationController
         end
     end
 
+    def login_by_github
+        if_logged_in_redirect_to_programmer_home
+
+        request.env['omniauth.auth']
+
+        session[:name] = request.env['omniauth.auth']['info']['nickname']
+
+        Programmer.find_or_create_by(username: session[:name])
+
+        redirect_to 
+    end
+
     def destroy
         if_not_logged_in_redirect_to_login
 

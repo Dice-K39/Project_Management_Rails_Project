@@ -6,20 +6,20 @@ class ProgrammersController < ApplicationController
     end
 
     def new
-        if_not_logged_in_redirect_to_login
+        if_logged_in_redirect_to_programmer_home
 
         @programmer = Programmer.new
     end
 
     def create
-        if_not_logged_in_redirect_to_login
+        if_logged_in_redirect_to_programmer_home
 
-        programmer = Programmer.new(programmer_params)
+        @programmer = Programmer.new(programmer_params)
 
-        if programmer.valid?
-            programmer.save
+        if @programmer.valid?
+            @programmer.save
 
-            session[:programmer_id] = programmer.id
+            session[:programmer_id] = @programmer.id
 
             last_login_and_redirect(programmer)
         else
@@ -42,10 +42,10 @@ class ProgrammersController < ApplicationController
     def update
         if_not_logged_in_redirect_to_login
 
-        programmer = Programmer.find_by_id(params[:id])
+        @programmer = Programmer.find_by_id(params[:id])
 
-        if programmer.update(programmer_params)
-            last_login_and_redirect(programmer)
+        if @programmer.update(programmer_params)
+            last_login_and_redirect(@programmer)
         else
             render :edit
         end

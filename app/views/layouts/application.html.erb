@@ -28,6 +28,7 @@
               <% if !current_programmer %>
                 <a href='/programmers/new' class="button is-primary">Create Account</a>
                 <a href='/login' class="button is-light">Login</a>
+                <%= link_to 'Login with GitHub', '/auth/github', class: "button is-primary"%>
               <% else %>
                 <%= link_to 'Logout', logout_path, class: 'button is-danger', method: 'post' %>
               <% end %>
