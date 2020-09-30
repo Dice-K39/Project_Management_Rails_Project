@@ -1,6 +1,8 @@
 class AssignmentsController < ApplicationController
     def index
         if_not_logged_in_redirect_to_login
+
+        redirect_if_not_current_programmer(session[:programmer_id])
         
         @assignments = Assignment.all
     end
@@ -8,11 +10,15 @@ class AssignmentsController < ApplicationController
     def new
         if_not_logged_in_redirect_to_login
 
+        if_not_project_manager
+
         @assignment = Assignment.new
     end
 
     def create
         if_not_logged_in_redirect_to_login
+
+        if_not_project_manager
 
         @assignment = Assignment.new(assignment_params)
 
@@ -26,17 +32,23 @@ class AssignmentsController < ApplicationController
     def show
         if_not_logged_in_redirect_to_login
 
+        redirect_if_not_current_programmer(session[:programmer_id])
+
         find_assignment
     end
 
     def edit
         if_not_logged_in_redirect_to_login
 
+        if_not_project_manager
+
         find_assignment
     end
 
     def update
         if_not_logged_in_redirect_to_login
+
+        if_not_project_manager
 
         @assignment = Assignment.find_by_id(params[:id])
 
@@ -49,6 +61,8 @@ class AssignmentsController < ApplicationController
 
     def destroy
         if_not_logged_in_redirect_to_login
+
+        if_not_project_manager
         
         find_assignment
 

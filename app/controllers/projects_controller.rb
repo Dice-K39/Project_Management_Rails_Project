@@ -8,11 +8,15 @@ class ProjectsController < ApplicationController
     def new
         if_not_logged_in_redirect_to_login
 
+        if_not_project_manager
+
         @project = Project.new
     end
 
     def create
         if_not_logged_in_redirect_to_login
+
+        if_not_project_manager
 
         @project = Project.new(project_params)
 
@@ -34,11 +38,15 @@ class ProjectsController < ApplicationController
     def edit
         if_not_logged_in_redirect_to_login
 
+        if_not_project_manager
+
         find_project
     end
 
     def update
         if_not_logged_in_redirect_to_login
+
+        if_not_project_manager
 
         @project = Project.find_by_id(params[:id])
 
@@ -53,6 +61,8 @@ class ProjectsController < ApplicationController
 
     def destroy
         if_not_logged_in_redirect_to_login
+
+        if_not_project_manager
         
         find_project
 

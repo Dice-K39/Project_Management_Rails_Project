@@ -39,9 +39,11 @@
 
     <% flash.keys.each do |type| %>
       <div class="text-center alert alert-warning">
-        <%= flash[type] %>
+        <strong><%= flash[type] %></strong>
+        <br /><br />
       </div>
     <% end %>
+    
     
     <%= yield %>
   </body>

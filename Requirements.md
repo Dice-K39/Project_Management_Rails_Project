@@ -14,7 +14,7 @@
 
 [X] - Your application must provide standard user authentication, including signup, login, logout, and passwords.
 
-[ ] - Your authentication system must also allow login from some other service. Facebook, Twitter, Foursquare, Github, etc...
+[X] - Your authentication system must also allow login from some other service. Facebook, Twitter, Foursquare, Github, etc...
 
 [X] - You must include and make use of a nested resource with the appropriate RESTful URLs.
 
