@@ -9,17 +9,11 @@ Rails.application.routes.draw do
 
   post '/logout' => 'sessions#destroy'
 
-  resources :programmers
+  resources :sessions, only: [:new, :create, :destroy]
 
-  resources :programmers do
-    resources :assignments
-  end
+  resources :programmers
 
   resources :assignments do
     resources :comments
-  end
-
-  resources :projects
-  resources :assignments
-  
+  end  
 end
