@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
         if programmer && programmer.authenticate(params[:session][:password])
             session[:programmer_id] = programmer.id
 
+            programmer.update_attribute(:last_login, DateTime.now)
+
             redirect_to programmer_path(programmer)
         else
             flash[:no_account] = 'Invalid username/password combination'
@@ -26,10 +28,17 @@ class SessionsController < ApplicationController
         request.env['omniauth.auth']
 
         session[:name] = request.env['omniauth.auth']['info']['nickname']
+        programmer = Programmer.find_by(username: session[:name])
 
-        Programmer.find_or_create_by(username: session[:name])
+        if programmer != nil
+            session[:programmer_id] = programmer.id
 
-        redirect_to 
+            programmer.update_attribute(:last_login, DateTime.now)
+
+            redirect_to programmer_path(programmer)
+        else
+            redirect_to new_programmer_path
+        end
     end
 
     def destroy

@@ -21,7 +21,7 @@ class ProgrammersController < ApplicationController
 
             session[:programmer_id] = @programmer.id
 
-            last_login_and_redirect(programmer)
+            last_login_and_redirect(@programmer)
         else
             render :new
         end
