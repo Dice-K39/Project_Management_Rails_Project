@@ -2,9 +2,9 @@ class AssignmentsController < ApplicationController
     def index
         if_not_logged_in_redirect_to_login
 
-        redirect_if_not_current_programmer(session[:programmer_id])
+        redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
         
-        @assignments = Assignment.all
+        @assignments = current_programmer.assignments.all
     end
 
     def new
@@ -32,7 +32,9 @@ class AssignmentsController < ApplicationController
     def show
         if_not_logged_in_redirect_to_login
 
-        redirect_if_not_current_programmer(session[:programmer_id])
+        redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
+
+        does_assignment_exist?(params[:id])
 
         find_assignment
     end
@@ -40,7 +42,11 @@ class AssignmentsController < ApplicationController
     def edit
         if_not_logged_in_redirect_to_login
 
-        if_not_project_manager
+        if current_programmer.is_project_manager? != true
+            flash[:only_project_manager] = 'Only Project Manager has access.'
+
+            redirect_to assignments_path(current_programmer)
+        end
 
         find_assignment
     end
@@ -62,7 +68,11 @@ class AssignmentsController < ApplicationController
     def destroy
         if_not_logged_in_redirect_to_login
 
-        if_not_project_manager
+        if current_programmer.is_project_manager? != true
+            flash[:only_project_manager] = 'Only Project Manager has access.'
+
+            redirect_to assignments_path(current_programmer)
+        end
         
         find_assignment
 
@@ -80,6 +90,16 @@ class AssignmentsController < ApplicationController
     end
 
     def find_assignment
-        @assignment = Assignment.find_by_id(params[:id])
+        @assignment = current_programmer.assignments.find_by_id(params[:id])
+    end
+
+    def does_assignment_exist?(id)
+        exist = current_programmer.assignments.find_by_id(id)
+
+        if exist == nil
+            flash[:dont_exist] = 'No record in database.'
+
+            redirect_to assignments_path
+        end
     end
 end

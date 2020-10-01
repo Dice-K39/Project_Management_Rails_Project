@@ -9,7 +9,9 @@ gem 'bcrypt'
 ####### Gems I added #######
 gem 'dotenv-rails'
 gem 'bulma-rails'
+gem 'omniauth'
 gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 ###############################
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
