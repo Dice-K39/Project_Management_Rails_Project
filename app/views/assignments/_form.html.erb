@@ -17,7 +17,7 @@
         <div>
             <%= f.label :project %>
             <%= f.collection_select :project_id, Project.all, :id, :name, include_blank: 'Select a Project' %>
-        </div><br />
+        </div>
 
         <div>
             <%= f.label :is_completed %>

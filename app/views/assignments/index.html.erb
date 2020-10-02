@@ -16,9 +16,6 @@
     <% end %><br />
 
     <label>Programmer Assigned:</label>
-    <% if assignment.programmer != nil %>
-        <%= assignment.programmer.full_name %>
-    <% else %>
-        None
-    <% end %><br /><br />
+    <%= assignment.programmer.full_name %>
+    <br /><br />
 <% end %>
