@@ -10,7 +10,7 @@ gem 'bcrypt'
 gem 'dotenv-rails'
 gem 'bulma-rails'
 gem 'omniauth'
-gem 'omniauth-github'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-rails_csrf_protection'
 ###############################
 

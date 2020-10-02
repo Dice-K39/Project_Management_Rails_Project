@@ -22,22 +22,33 @@ class SessionsController < ApplicationController
         end
     end
 
-    def login_by_github
+    def create_or_login_by_github
         if_logged_in_redirect_to_programmer_home
 
-        request.env['omniauth.auth']
+        programmer = Programmer.find_or_create_by(username: auth['info']['nickname']) do |p|
+            byebug
+            p.password = SecureRandom.hex(16)
+            p.first_name = 'Enter First Name'
+            p.last_name = 'Enter Last Name'
+            p.email = 'Enter Email'
+            p.phone_number = '1234567890'
+            p.last_login = DateTime.now
+            p.login_count = 0
+            p.is_project_manager = true
+        end
 
-        session[:name] = request.env['omniauth.auth']['info']['nickname']
-        programmer = Programmer.find_by(username: session[:name])
+        session[:programmer_id] = programmer.id
 
-        if programmer != nil
-            session[:programmer_id] = programmer.id
-
-            programmer.update_attribute(:last_login, DateTime.now)
-
+        if programmer.login_count > 0
+            programmer.update_attribute(:login_count,programmer.login_count + 1)
+byebug
             redirect_to programmer_path(programmer)
         else
-            redirect_to new_programmer_path
+            flash[:update_account] = "Please update account."
+            
+            programmer.update_attribute(:login_count,programmer.login_count + 1)
+byebug
+            redirect_to edit_programmer_path(programmer)
         end
     end
 
@@ -47,5 +58,11 @@ class SessionsController < ApplicationController
         session.clear
 
         redirect_to '/'
+    end
+
+    private
+
+    def auth
+        request.env['omniauth.auth']
     end
 end

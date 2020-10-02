@@ -71,6 +71,7 @@ class ProgrammersController < ApplicationController
 
     def last_login_and_redirect(programmer)
         programmer.update_attribute(:last_login, DateTime.now)
+        programmer.update_attribute(:login_count,programmer.login_count + 1)
 
         redirect_to programmer_path(programmer)
     end

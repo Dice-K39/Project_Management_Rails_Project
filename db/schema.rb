@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_27_003905) do
+ActiveRecord::Schema.define(version: 2020_10_01_105556) do
 
   create_table "assignments", force: :cascade do |t|
     t.text "task"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_003905) do
     t.boolean "is_project_manager", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "login_count"
   end
 
   create_table "projects", force: :cascade do |t|

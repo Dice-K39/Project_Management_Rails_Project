@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  match '/auth/:provider/callback', to: 'sessions#login_by_github', via: [:get, :post]
+  match '/auth/:provider/callback' => 'sessions#create_or_login_by_github', via: [:get, :post]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
