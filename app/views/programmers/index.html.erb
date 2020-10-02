@@ -1,22 +1,27 @@
-<% @programmers.each do |programmer| %>
-    <label>Welcome: </label>
-    <%= programmer.full_name %><br /><br />
+Welcome: <%= @project_manager.first_name %><br /><br />
 
-    <% if !programmer.is_project_manager %>
-        <label>Assignment: </label>
-            <ul>
-                <% programmer.assignments.each do |assignment| %>
-                    <li><%= assignment.task %></li>
-                <% end %>
-            </ul>
-        <br /><br />
-    <% else %>
-        <table>
-            <tr>
-                <td><%= button_to 'Add Project', new_project_path, class: 'button is-primary' %></td>
-                <td><%= button_to 'Add Assignment', new_assignment_path, class: 'button is-primary' %></td>
-            </tr>
-            
-        </table>
+<%= link_to 'Add Project', new_project_path, class: 'button is-primary' %>
+<%= link_to 'Add Assignment', new_assignment_path, class: 'button is-primary' %><br /><br />
+
+These are the programmers that you have at your disposal:<br /><br/>
+
+<% @programmers.each do |programmer| %>
+    <% if !programmer.is_project_manager%>
+        <label>Name: </label>
+        <%= programmer.full_name %><br /><br />
+
+        <% if !programmer.assignments.empty? %>
+            <label>Assignment: </label><br />
+                <ul>
+                    <% programmer.assignments.each do |assignment| %>
+                        <li><%= assignment.task %></li><br />
+                    <% end %>
+                </ul>
+            <br /><br />
+        <% else %>
+            <label>Assignment: </label><br />
+                None
+            <br /><br />
+        <% end %>
     <% end %>
 <% end %>

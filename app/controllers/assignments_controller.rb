@@ -23,7 +23,7 @@ class AssignmentsController < ApplicationController
         @assignment = Assignment.new(assignment_params)
 
         if @assignment.save
-            redirect_to assignment_path(@assignment)
+            redirect_to assignments_path
         else
             render :new
         end

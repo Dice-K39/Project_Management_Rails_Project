@@ -18,5 +18,17 @@
     <%= @programmer.format_updated_at %>
 </div>
 
+<br />
 
-<%= button_to "Delete Programmer", programmer_path(@programmer), class: 'button is-danger', method: :delete %>
+<div>
+    <label>Assignments: </label>
+    <ul>
+        <% @programmer.assignments.each do |assignment| %>
+            <li><%= assignment.task %></li><br />
+        <% end %>
+    </ul>
+</div>
+
+<% if @programmer.is_project_manager %>
+    <%= button_to "Delete Programmer", programmer_path(@programmer), class: 'button is-danger', method: :delete %>
+<% end %>
