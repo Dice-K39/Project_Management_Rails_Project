@@ -4,7 +4,7 @@ class AssignmentsController < ApplicationController
 
         redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
         
-        @assignments = current_programmer.assignments.all
+        @assignments = Assignment.all
     end
 
     def new

@@ -23,6 +23,8 @@ class ProgrammersController < ApplicationController
 
             session[:programmer_id] = @programmer.id
 
+            @programmer.login_count = 0
+
             last_login_and_redirect(@programmer)
         else
             render :new

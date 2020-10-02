@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
         if programmer.login_count > 0
             programmer.update_attribute(:login_count,programmer.login_count + 1)
 
-            redirect_to programmer_path(programmer)
+            redirect_to programmers_path
         else
             flash[:update_account] = "Please update account."
             
