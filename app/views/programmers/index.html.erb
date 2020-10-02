@@ -1,12 +1,22 @@
 <% @programmers.each do |programmer| %>
-    <label>Full Name: </label>
+    <label>Welcome: </label>
     <%= programmer.full_name %><br /><br />
 
-    <label>Assignment: </label>
-        <ul>
-            <% programmer.assignments.each do |assignment| %>
-                <li><%= assignment.task %></li>
-            <% end %>
-        </ul>
-    <br /><br />
+    <% if !programmer.is_project_manager %>
+        <label>Assignment: </label>
+            <ul>
+                <% programmer.assignments.each do |assignment| %>
+                    <li><%= assignment.task %></li>
+                <% end %>
+            </ul>
+        <br /><br />
+    <% else %>
+        <table>
+            <tr>
+                <td><%= button_to 'Add Project', new_project_path, class: 'button is-primary' %></td>
+                <td><%= button_to 'Add Assignment', new_assignment_path, class: 'button is-primary' %></td>
+            </tr>
+            
+        </table>
+    <% end %>
 <% end %>

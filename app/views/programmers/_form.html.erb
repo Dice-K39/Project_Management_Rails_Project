@@ -63,6 +63,15 @@
                 <td><%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %></td>
             </div>
         </tr>
+
+        <tr>
+            <div>
+                <% if current_programmer.is_project_manager %>
+                    <td><%= f.label 'Project Manager Permissions:' %></td>
+                    <td><%= f.check_box :is_project_manager %></td>
+                <% end %>
+            </div>
+        </tr>
 </table>
     
     <%= f.submit class: 'button is-primary' %>

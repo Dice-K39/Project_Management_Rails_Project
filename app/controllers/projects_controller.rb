@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
     def index
         if_not_logged_in_redirect_to_login
 
-        @projects = Project.all
+        @projects = current_programmer.projects.all
     end
 
     def new
