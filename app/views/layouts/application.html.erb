@@ -24,8 +24,11 @@
             <%= link_to 'Home', root_path, class: "button is-primary navbar-item"%>
           <% end %>
           <% if is_logged_in? && current_programmer.is_project_manager %>
-            <%= link_to 'Add Project', new_project_path, class: 'button is-primary' %>
-            <%= link_to 'Add Assignment', new_assignment_path, class: 'button is-primary' %><br /><br />
+            <%= link_to 'Programmers', programmers_path, class: 'button is-primary' %>
+            <%= link_to 'Projects', projects_path, class: 'button is-primary' %>
+            <%= link_to 'Assignments', assignments_path, class: 'button is-primary' %>
+            <%= link_to 'Add Project', new_project_path, class: 'button is-success' %>
+            <%= link_to 'Add Assignment', new_assignment_path, class: 'button is-success' %><br /><br />
           <% end %>
         </div>
       </div>
