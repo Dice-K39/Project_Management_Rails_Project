@@ -3,10 +3,12 @@ Welcome: <%= @project_manager.first_name %><br /><br />
 These are the programmers that you have at your disposal:<br /><br/>
 
 <% @programmers.each do |programmer| %>
-    <% if !programmer.is_project_manager%>
+    <div>
         <label>Name: </label>
         <%= link_to programmer.full_name, programmer_path(programmer.id) %><br /><br />
+    </div>
 
+    <div class="content">
         <label>Assignment: </label><br />
         <% if !programmer.assignments.empty? %>
             <ul>
@@ -19,5 +21,5 @@ These are the programmers that you have at your disposal:<br /><br/>
             None
             <br /><br />
         <% end %>
-    <% end %>
+    </div>
 <% end %>

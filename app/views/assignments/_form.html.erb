@@ -20,6 +20,11 @@
         </div>
 
         <div>
+            <%= f.label 'Programmer Assigned:' %>
+            <%= f.collection_select :programmer_id, Programmer.all, :id, :full_name, include_blank: 'Select a Programmer' %>
+        </div>
+
+        <div>
             <%= f.label :is_completed %>
             <%= f.check_box :is_completed %>
         </div>
@@ -32,11 +37,6 @@
         <div>
             <%= f.label :assigned_at %>
             <%= f.datetime_field :assigned_at, placeholder: 'Enter Date and Time' %>
-        </div>
-
-        <div>
-            <%= f.label 'Programmer Assigned:' %>
-            <%= f.collection_select :programmer_id, Programmer.all, :id, :full_name, include_blank: 'Select a Programmer' %>
         </div>
 
         <%= f.submit class: 'button is-primary'%>
