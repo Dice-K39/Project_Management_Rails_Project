@@ -7,17 +7,16 @@ These are the programmers that you have at your disposal:<br /><br/>
         <label>Name: </label>
         <%= link_to programmer.full_name, programmer_path(programmer.id) %><br /><br />
 
+        <label>Assignment: </label><br />
         <% if !programmer.assignments.empty? %>
-            <label>Assignment: </label><br />
-                <ul>
-                    <% programmer.assignments.each do |assignment| %>
-                        <li><%= assignment.task %></li><br />
-                    <% end %>
-                </ul>
+            <ul>
+                <% programmer.assignments.each do |assignment| %>
+                    <li><%= assignment.task %></li><br />
+                <% end %>
+            </ul>
             <br /><br />
         <% else %>
-            <label>Assignment: </label><br />
-                None
+            None
             <br /><br />
         <% end %>
     <% end %>
