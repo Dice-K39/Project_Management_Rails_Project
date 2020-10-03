@@ -5,7 +5,7 @@ These are the programmers that you have at your disposal:<br /><br/>
 <% @programmers.each do |programmer| %>
     <% if !programmer.is_project_manager%>
         <label>Name: </label>
-        <%= programmer.full_name %><br /><br />
+        <%= link_to programmer.full_name, programmer_path(programmer.id) %><br /><br />
 
         <% if !programmer.assignments.empty? %>
             <label>Assignment: </label><br />

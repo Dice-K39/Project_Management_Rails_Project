@@ -1,9 +1,9 @@
 <div>
-    <label>First Name: </label>
-    <%= @programmer.first_name %>
+    <label>Full Name: </label>
+    <%= @programmer.full_name %>
 </div>
 
-<% if @programmer.is_project_manager %>
+<% if current_programmer.is_project_manager %>
     <%= button_to "Delete Programmer", programmer_path(@programmer), class: 'button is-danger', method: :delete %>
 <% end %>
 
@@ -25,16 +25,14 @@
 <br />
 
 <div>
-    <% if !@programmer.is_project_manager %>
-        <label>Assignments: </label>
-        <% if !@programmer.assignments.empty?%>
-            <ul>
-                <% @programmer.assignments.each do |assignment| %>
-                    <li><%= assignment.task %></li><br />
-                <% end %>
-            </ul>
-        <% else %>
-            None
-        <% end %>
+    <label>Assignments: </label>
+    <% if !@programmer.assignments.empty?%>
+        <ul>
+            <% @programmer.assignments.each do |assignment| %>
+                <li><%= assignment.task %></li><br />
+            <% end %>
+        </ul>
+    <% else %>
+        None
     <% end %>
 </div>
