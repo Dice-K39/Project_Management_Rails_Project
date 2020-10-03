@@ -14,56 +14,44 @@
 <% end %>
 
 <%= form_for programmer do |f| %>
-    <table>
-        <tr>
-            <div>
-                <td><%= f.label 'Username:' %></td>
-                <td><%= f.text_field :username, :placeholder => 'Enter Username' %></td>
+    <div class="columns">
+        <div class="column is-half">
+            <div class="column is-one-quarter">
+                <%= f.label 'Username:' %>     
+                <%= f.text_field :username, :placeholder => 'Enter Username' %>
             </div>
-        </tr>
 
-        <tr>
-            <div>
-                <td><%= f.label 'Password:' %></td>
-                <td><%= f.password_field :password, :placeholder => 'Enter Password' %></td>
+            <div class="column is-one-quarter">
+                <%= f.label 'Password:' %>       
+                <%= f.password_field :password, :placeholder => 'Enter Password' %>
             </div>
-        </tr>
 
-        <tr>
-            <div>
-                <td><%= f.label 'Password Confirmation:' %></td>
-                <td><%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %></td>
+            <div class="column is-one-quarter">
+                <%= f.label 'Password Confirmation:' %>
+                <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %>
             </div>
-        </tr>
+        
+            <div class="column is-one-quarter">
+                <%= f.label 'First Name:' %>
+                <%= f.text_field :first_name, :placeholder => 'Enter First Name' %>
+            </div>
+        
+            <div class="column is-one-quarter">
+                <%= f.label 'Last Name:' %>
+                <%= f.text_field :last_name, :placeholder => 'Enter Last Name' %>
+            </div>
 
-        <tr>
-            <div>
-                <td><%= f.label 'First Name:' %></td>
-                <td><%= f.text_field :first_name, :placeholder => 'Enter First Name' %></td>
+            <div class="column is-one-quarter">
+                <%= f.label 'Email:' %>
+                <%= f.text_field :email, :placeholder => 'Enter Email' %>
             </div>
-        </tr>
+        
+            <div class="column is-one-quarter">
+                <%= f.label 'Phone Number:' %>
+                <%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %>
+            </div>
+            <br />
 
-        <tr>
-            <div>
-                <td><%= f.label 'Last Name:' %></td>
-                <td><%= f.text_field :last_name, :placeholder => 'Enter Last Name' %></td>
-            </div>
-        </tr>
-
-        <tr>
-            <div>
-                <td><%= f.label 'Email:' %></td>
-                <td><%= f.text_field :email, :placeholder => 'Enter Email' %></td>
-            </div>
-        </tr>
-
-        <tr>
-            <div>
-                <td><%= f.label 'Phone Number:' %></td>
-                <td><%= f.text_field :phone_number, :placeholder => 'Enter Phone Number' %></td>
-            </div>
-        </tr>
-</table>
-    
-    <%= f.submit class: 'button is-primary' %>
+        <%= f.submit class: 'button is-primary' %>
+    </div>
 <% end %>
