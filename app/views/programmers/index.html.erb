@@ -1,8 +1,5 @@
 Welcome: <%= @project_manager.first_name %><br /><br />
 
-<%= link_to 'Add Project', new_project_path, class: 'button is-primary' %>
-<%= link_to 'Add Assignment', new_assignment_path, class: 'button is-primary' %><br /><br />
-
 These are the programmers that you have at your disposal:<br /><br/>
 
 <% @programmers.each do |programmer| %>
