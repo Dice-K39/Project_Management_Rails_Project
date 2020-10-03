@@ -35,6 +35,8 @@ class ProgrammersController < ApplicationController
     def show
         if_not_logged_in_redirect_to_login
 
+        redirect_if_not_current_programmer_or_project_manager(params[:id])
+
         @programmer = Programmer.find_by_id(params[:id])
     end
 
