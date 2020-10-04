@@ -31,7 +31,7 @@ class AssignmentsController < ApplicationController
         if_not_logged_in_redirect_to_login
 
         does_assignment_exist?(params[:id])
-byebug
+        
         # find_assignment
         @assignment = Assignment.find_by_id(params[:id])
         @comments = @assignment.comments.find_by_id(params[:id])

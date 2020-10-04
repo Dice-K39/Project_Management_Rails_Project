@@ -3,10 +3,6 @@
     <%= @programmer.full_name %>
 </div>
 
-<% if current_programmer.is_project_manager %>
-    <%= button_to "Delete Programmer", programmer_path(@programmer), class: 'button is-danger', method: :delete, data: {confirm: "Are you sure you want to delete this Project?"} %>
-<% end %>
-
 <div>
     <label>Last Login At: </label>
     <%= @programmer.format_last_login %>
@@ -17,10 +13,10 @@
     <%= @programmer.format_created_at %>
 </div>
 
-<div>
-    <label>Updated At: </label>
-    <%= @programmer.format_updated_at %>
-</div>
+<% if current_programmer.id == @programmer.id || current_programmer.is_project_manager %>
+    <%= link_to "Update Profile", edit_programmer_path(@programmer), class: 'button is-warning' %>
+    <%= button_to "Delete Programmer", programmer_path(@programmer), class: 'button is-danger', method: :delete, data: {confirm: "Are you sure you want to delete this Project?"} %>
+<% end %>
 
 <br />
 

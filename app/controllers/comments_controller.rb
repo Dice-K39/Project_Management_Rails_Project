@@ -19,19 +19,13 @@ class CommentsController < ApplicationController
 
         assignment = Assignment.find_by_id(params[:assignment_id])
         comment = assignment.comments.new(comment_params)
-byebug
+
         comment.programmer_id = current_programmer.id
-        # temp_id_holder = assignment.programmer_id
-        # assignment.update_attribute(:programmer_id, session[:programmer_id])
-        # assignment.programmer_id = session[:programmer_id]
-        # comment[:assignment_id] = assignment.id
 
         if comment.valid?
             comment.save
 
-            # assignment.update_attribute(:programmer_id, temp_id_holder)
-byebug
-            redirect_to assignment_comments_path(comment.assignment_id) #@comment 
+            redirect_to assignment_comments_path(comment.assignment_id)
         else
             render :new
         end

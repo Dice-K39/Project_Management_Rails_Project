@@ -2,8 +2,6 @@ class ProjectsController < ApplicationController
     def index
         if_not_logged_in_redirect_to_login
 
-        if_not_project_manager
-
         @projects = Project.all
     end
 
