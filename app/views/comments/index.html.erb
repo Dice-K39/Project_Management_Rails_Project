@@ -1,10 +1,4 @@
 <% @comments.each do |comment| %>
-    <label>Project Name: </label>
-    <%= comment.assignment.project.name %><br />
-
-    <label>Project Assignment: </label>
-    <%= comment.assignment.task %><br />
-
     <label>Comment Title: </label>
     <%= link_to comment.title, assignment_comment_path(comment.assignment.id, comment.id) %><br />
 

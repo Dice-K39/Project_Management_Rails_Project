@@ -3,6 +3,7 @@ class Programmer < ApplicationRecord
     
     has_many :assignments
     has_many :projects, through: :assignments
+    has_many :comments
 
     validates :username, :email, presence: true, uniqueness: true
     validates :password, :first_name, :last_name, presence: true

@@ -3,7 +3,7 @@
     <%= assignment.project.name %><br />
 
     <label>Task: </label>
-    <%= assignment.task %><br />
+    <%= link_to assignment.task, assignment_path(assignment) %><br />
 
     <label>Assigned At: </label>
     <%= assignment.assigned_at %><br />

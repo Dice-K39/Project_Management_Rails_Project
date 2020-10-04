@@ -8,27 +8,29 @@ class CommentsController < ApplicationController
     def new
         if_not_logged_in_redirect_to_login
 
-        redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
-
-        does_assignment_exist?(params[:id])
+        does_assignment_exist?(params[:assignment_id])
 
         @assignment = Assignment.find_by_id(params[:assignment_id])
-        @comment = Comment.new(assignment_id: params[:assignment_id])
+        @comment = @assignment.comments.new
     end
 
     def create
         if_not_logged_in_redirect_to_login
 
-        redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
-
-        assignment = current_programmer.assignments.find_by_id(params[:assignment_id])
-        comment = Comment.new(comment_params)
-        
-        comment[:assignment_id] = assignment.id
+        assignment = Assignment.find_by_id(params[:assignment_id])
+        comment = assignment.comments.new(comment_params)
+byebug
+        comment.programmer_id = current_programmer.id
+        # temp_id_holder = assignment.programmer_id
+        # assignment.update_attribute(:programmer_id, session[:programmer_id])
+        # assignment.programmer_id = session[:programmer_id]
+        # comment[:assignment_id] = assignment.id
 
         if comment.valid?
             comment.save
 
+            # assignment.update_attribute(:programmer_id, temp_id_holder)
+byebug
             redirect_to assignment_comments_path(comment.assignment_id) #@comment 
         else
             render :new
@@ -83,6 +85,6 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
-        params.require(:comment).permit(:title, :content, :assignment_id)
+        params.require(:comment).permit(:title, :content, :assignment_id, :programmer_id)
     end
 end

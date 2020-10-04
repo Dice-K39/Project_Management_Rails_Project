@@ -18,14 +18,22 @@
         <%= link_to 'Add Comment', new_assignment_comment_path(@assignment), class: "button is-warning" %>
     </div>
 
-    <div class="column is-half">
+    <div class="column is-one-quarter">
         <h2>Comments:</h2><br />
         <% @assignment.comments.each do |comment| %>
-            <label>Title: </label>
-            <%= comment.title %><br />
+            <div>    
+                <label>Title: </label>
+                <%= comment.title %>
+                <br />
 
-            <label>Content: </label>
-            <%= comment.content %><br /><br />
+                <label>By: </label>
+                <%= comment.programmer.full_name %>
+                <br />
+
+                <label>Message: </label>
+                <%= comment.content %>
+                <br /><br />
+            </div>
         <% end %>
-    </div>>
+    </div>
 </div>

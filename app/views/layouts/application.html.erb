@@ -18,18 +18,22 @@
     <div class="navbar-start">
       <div class="navbar-item">
         <div class="buttons">
+          
           <% if is_logged_in? %>    
             <%= link_to 'Home', programmer_path(current_programmer), class: "button is-primary navbar-item"%>
           <% else %>
             <%= link_to 'Home', root_path, class: "button is-primary navbar-item"%>
           <% end %>
+          
+          <%= link_to 'Programmers', programmers_path, class: 'button is-primary' %>
+          <%= link_to 'Projects', projects_path, class: 'button is-primary' %>
+          <%= link_to 'Assignments', assignments_path, class: 'button is-primary' %>
+
           <% if is_logged_in? && current_programmer.is_project_manager %>
-            <%= link_to 'Programmers', programmers_path, class: 'button is-primary' %>
-            <%= link_to 'Projects', projects_path, class: 'button is-primary' %>
-            <%= link_to 'Assignments', assignments_path, class: 'button is-primary' %>
             <%= link_to 'Add Project', new_project_path, class: 'button is-success' %>
             <%= link_to 'Add Assignment', new_assignment_path, class: 'button is-success' %><br /><br />
           <% end %>
+
         </div>
       </div>
     </div>
