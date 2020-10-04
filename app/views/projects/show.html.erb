@@ -1,20 +1,28 @@
-<label>Project Name: </label>
-<%= @project.name %><br />
+<div>
+    <label>Project Name: </label>
+    <%= @project.name %><br />
 
-<label>Description: </label>
-<%= @project.description %><br />
+    <label>Description: </label>
+    <%= @project.description %><br />
 
-<label>Created at: </label>
-<%= @project.format_created_at %><br />
+    <label>Created at: </label>
+    <%= @project.format_created_at %><br />
 
-<label>Updated at: </label>
-<%= @project.format_updated_at %><br />
+    <label>Updated at: </label>
+    <%= @project.format_updated_at %><br />
 
-<label>Due Date: </label>
-<%= @project.due_date.strftime("%B %e, %Y at %l:%M%p") %><br />
+    <label>Due Date: </label>
+    <%= @project.due_date.strftime("%B %e, %Y at %l:%M%p") %><br />
 
-<label>Status: </label>
-<%= @project.status %><br />
+    <label>Status: </label>
+    <%= @project.status %><br />
+</div>
 
-
-<%= button_to "Delete Project", project_path(@project), class: 'button is-danger', method: :delete %>
+<div class="columns">
+    <div class="column is-1">
+        <%= link_to "Update Project", edit_project_path(@project), class: 'button is-warning' %>
+    </div>
+    <div class="column is-1">
+        <%= button_to "Delete Project", project_path(@project), class: 'button is-danger', method: :delete, data: {confirm: "Are you sure you want to delete this Project?"} %>
+    </div>
+</div>

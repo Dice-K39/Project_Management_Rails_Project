@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
     def index
         if_not_logged_in_redirect_to_login
 
-        @projects = current_programmer.projects.all
+        @projects = Project.all
     end
 
     def new
@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
         if @project.valid?
             @project.save
 
-            redirect_to project_path(@project)
+            redirect_to projects_path
         else
             render :new
         end
@@ -67,9 +67,9 @@ class ProjectsController < ApplicationController
         find_project
 
         if @project.delete
-            redirect_to new_project_path
+            redirect_to projects_path
         else
-            redirect_to programmer_path(@project)
+            redirect_to project_path(@project)
         end
     end
 

@@ -1,18 +1,6 @@
 <% @projects.each do |project| %>
     <label>Project Name: </label>
-    <%= project.name %><br />
-
-    <label>Project Description: </label>
-    <%= project.description %><br />
-
-    <label>Project Created At: </label>
-    <%= project.created_at %><br />
-
-    <label>Project Updated At: </label>
-    <%= project.updated_at %><br />
-
-    <label>Project Due Date: </label>
-    <%= project.due_date %><br />
+    <%= link_to project.name, project_path(project) %><br />
 
     <label>Project Status: </label>
     <%= project.status %><br /><br />
