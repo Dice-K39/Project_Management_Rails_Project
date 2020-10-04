@@ -29,7 +29,7 @@
     <% if !@programmer.assignments.empty?%>
         <ul>
             <% @programmer.assignments.each do |assignment| %>
-                <li><%= assignment.task %></li><br />
+                <li><%= link_to assignment.task, assignment_path(assignment) %></li><br />
             <% end %>
         </ul>
     <% else %>

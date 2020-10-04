@@ -37,6 +37,8 @@ class AssignmentsController < ApplicationController
         does_assignment_exist?(params[:id])
 
         find_assignment
+
+        @comments = @assignment.comments.find_by_id(params[:id])
     end
 
     def edit
@@ -91,15 +93,5 @@ class AssignmentsController < ApplicationController
 
     def find_assignment
         @assignment = current_programmer.assignments.find_by_id(params[:id])
-    end
-
-    def does_assignment_exist?(id)
-        exist = current_programmer.assignments.find_by_id(id)
-
-        if exist == nil
-            flash[:dont_exist] = 'No record in database.'
-
-            redirect_to assignments_path
-        end
     end
 end

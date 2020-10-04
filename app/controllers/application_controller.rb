@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
     def redirect_if_not_current_programmer_or_project_manager(id)
         if !current_programmer.is_project_manager && current_programmer.id != id.to_i
-            flash[:not_assigned_programmer] = "No Access"
+            flash[:not_assigned_programmer] = "No Access."
 
             redirect_to programmer_path(current_programmer)
         end
@@ -36,6 +36,16 @@ class ApplicationController < ActionController::Base
             flash[:not_admin] = "Only Project Manager has access."
 
             redirect_to programmer_path(current_programmer)
+        end
+    end
+
+    def does_assignment_exist?(id)
+        exist = current_programmer.assignments.find_by_id(id)
+
+        if exist == nil
+            flash[:dont_exist] = 'No record in database.'
+
+            redirect_to assignments_path
         end
     end
 end

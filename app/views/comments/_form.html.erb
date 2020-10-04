@@ -15,6 +15,11 @@
 
 <%= form_for [assignment, comment] do |f| %>
     <div>
+        <%= f.label 'Project: ' %>
+        <%= comment.assignment.project.name %>
+    </div>
+
+    <div>
         <%= f.label 'Assignment: '%>
         <%= comment.assignment.task %>
     </div>
@@ -28,6 +33,8 @@
         <%= f.label :content %>
         <%= f.text_area :content, placeholder: 'Enter Content' %>
     </div>
+    
+    <br />
 
     <%= f.submit class: 'button is-primary'%>
 <% end %>

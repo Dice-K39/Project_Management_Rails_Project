@@ -10,6 +10,8 @@ class CommentsController < ApplicationController
 
         redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
 
+        does_assignment_exist?(params[:id])
+
         @assignment = Assignment.find_by_id(params[:assignment_id])
         @comment = Comment.new(assignment_id: params[:assignment_id])
     end
