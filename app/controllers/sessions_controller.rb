@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
             p.phone_number = '1234567890'
             p.last_login = DateTime.now
             p.login_count = 0
-            p.is_project_manager = true
+            p.is_project_manager = false
         end
 
         session[:programmer_id] = programmer.id

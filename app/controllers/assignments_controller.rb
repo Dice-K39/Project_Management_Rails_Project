@@ -1,8 +1,6 @@
 class AssignmentsController < ApplicationController
     def index
         if_not_logged_in_redirect_to_login
-
-        redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
         
         @assignments = Assignment.all
     end
