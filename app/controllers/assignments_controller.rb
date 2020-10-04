@@ -40,10 +40,16 @@ class AssignmentsController < ApplicationController
     def edit
         if_not_logged_in_redirect_to_login
 
-        if current_programmer.is_project_manager? != true
-            flash[:only_project_manager] = 'Only Project Manager has access.'
+        if !current_programmer.is_project_manager?
+            if find_assignment.is_completed == false
+                @assignment.update_attribute(:is_completed, true)
 
-            redirect_to assignments_path(current_programmer)
+                redirect_to assignment_path(@assignment)
+            else
+                flash[:only_project_manager] = 'Only Project Manager has access.'
+
+                redirect_to assignments_path(current_programmer)
+            end
         end
 
         find_assignment
@@ -54,7 +60,7 @@ class AssignmentsController < ApplicationController
 
         if_not_project_manager
 
-        @assignment = Assignment.find_by_id(params[:id])
+        find_assignment
 
         if @assignment.update(assignment_params)
             redirect_to assignment_path(@assignment)

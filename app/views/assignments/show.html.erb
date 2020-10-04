@@ -15,6 +15,10 @@
         <label>Programmer Assigned: </label>
         <%= @assignment.programmer.full_name %><br /><br />
 
+        <% if !@assignment.is_completed? %>
+            <%= link_to 'Completed?', edit_assignment_path(@assignment), class: "button is-success" %>
+        <% end %>
+
         <%= link_to 'Add Comment', new_assignment_comment_path(@assignment), class: "button is-warning" %>
     </div>
 
