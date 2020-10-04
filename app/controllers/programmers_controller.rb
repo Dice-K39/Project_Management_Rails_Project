@@ -1,10 +1,8 @@
 class ProgrammersController < ApplicationController
     def index
         if_not_logged_in_redirect_to_login
-
-        if_not_project_manager
         
-        @project_manager = current_programmer
+        @currently_logged_in_programmer = current_programmer
         @programmers = Programmer.all
     end
 

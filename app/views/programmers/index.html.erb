@@ -1,6 +1,4 @@
-Welcome: <%= @project_manager.first_name %><br /><br />
-
-These are the programmers that you have at your disposal:<br /><br/>
+Welcome: <%= @currently_logged_in_programmer.first_name %><br /><br />
 
 <% @programmers.each do |programmer| %>
     <div>
@@ -9,7 +7,8 @@ These are the programmers that you have at your disposal:<br /><br/>
     </div>
 
     <div class="content">
-        <label>Assignment: </label><br />
+        <%= pluralize(programmer.assignments.count, 'Assignment') %>:<br />
+        
         <% if !programmer.assignments.empty? %>
             <ul>
                 <% programmer.assignments.each do |assignment| %>
