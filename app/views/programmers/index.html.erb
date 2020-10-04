@@ -12,7 +12,12 @@ Welcome: <%= @currently_logged_in_programmer.first_name %><br /><br />
         <% if !programmer.assignments.empty? %>
             <ul>
                 <% programmer.assignments.each do |assignment| %>
-                    <li><%= assignment.task %></li><br />
+                    <li>
+                        <% if assignment.is_completed %>
+                            <strong>**COMPLETED**</strong>
+                        <% end %>
+                        <%= assignment.task %> 
+                    </li><br />
                 <% end %>
             </ul>
             <br /><br />
