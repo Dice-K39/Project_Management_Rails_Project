@@ -1,7 +1,7 @@
 class AssignmentsController < ApplicationController
     def index
         if_not_logged_in_redirect_to_login
-        
+
         @assignments = Assignment.all
     end
 
