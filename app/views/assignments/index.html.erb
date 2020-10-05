@@ -1,3 +1,8 @@
+<%= form_tag(assignments_path, method: :get) do %>
+    <%= text_field_tag 'query' %>
+    <%= submit_tag 'Search', class: 'button is-primary' %>
+<% end %><br />
+
 <% @assignments.each do |assignment| %>
     <label>For: </label>
     <%= assignment.project.name %><br />

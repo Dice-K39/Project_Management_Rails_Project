@@ -2,7 +2,11 @@ class AssignmentsController < ApplicationController
     def index
         if_not_logged_in_redirect_to_login
 
-        @assignments = Assignment.all
+        if !!params[:query]
+            @assignments = Assignment.search(params[:query])
+        else
+            @assignments = Assignment.all
+        end
     end
 
     def new
