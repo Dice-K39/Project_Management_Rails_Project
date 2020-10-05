@@ -1,13 +1,13 @@
 class CommentsController < ApplicationController
-    def index
-        if_not_logged_in_redirect_to_login
+    before_action :if_not_logged_in_redirect_to_login
 
-        @comments = Assignment.find_by_id(params[:assignment_id]).comments
+    def index
+        @assignment = Assignment.find_by_id(params[:assignment_id])
+        @comments = @assignment.comments
+        # @comments = Assignment.find_by_id(params[:assignment_id]).comments
     end
 
     def new
-        if_not_logged_in_redirect_to_login
-
         does_assignment_exist?(params[:assignment_id])
 
         @assignment = Assignment.find_by_id(params[:assignment_id])
@@ -15,8 +15,6 @@ class CommentsController < ApplicationController
     end
 
     def create
-        if_not_logged_in_redirect_to_login
-
         assignment = Assignment.find_by_id(params[:assignment_id])
         comment = assignment.comments.new(comment_params)
 
@@ -32,15 +30,11 @@ class CommentsController < ApplicationController
     end
 
     def show
-        if_not_logged_in_redirect_to_login
-
         assignment = Assignment.find_by_id(params[:assignment_id])
         @comment = assignment.comments.find_by_id(params[:id])
     end
 
     def edit
-        if_not_logged_in_redirect_to_login
-
         redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
 
         @assignment = Assignment.find_by_id(params[:assignment_id])
@@ -48,8 +42,6 @@ class CommentsController < ApplicationController
     end
 
     def update
-        if_not_logged_in_redirect_to_login
-
         redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
 
         @comment = Comment.find_by_id(params[:id])
@@ -62,8 +54,6 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        if_not_logged_in_redirect_to_login
-
         redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
         
         assignment = Assignment.find_by_id(params[:assignment_id])

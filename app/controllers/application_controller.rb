@@ -31,11 +31,19 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def if_not_project_manager
+    def redirect_to_programmer_if_not_project_manager
         if current_programmer.is_project_manager != true
             flash[:not_admin] = "Only Project Manager has access."
 
             redirect_to programmer_path(current_programmer)
+        end
+    end
+
+    def redirect_to_assignments_if_not_project_manager
+        if current_programmer.is_project_manager != true
+            flash[:not_admin] = "Only Project Manager has access."
+
+            redirect_to assignments_path
         end
     end
 

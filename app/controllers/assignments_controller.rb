@@ -1,7 +1,6 @@
 class AssignmentsController < ApplicationController
+    before_action :if_not_logged_in_redirect_to_login
     def index
-        if_not_logged_in_redirect_to_login
-
         if !!params[:query]
             @assignments = Assignment.search(params[:query])
         else
@@ -10,16 +9,12 @@ class AssignmentsController < ApplicationController
     end
 
     def new
-        if_not_logged_in_redirect_to_login
-
-        if_not_project_manager
+        redirect_to_assiments_if_not_project_manager
 
         @assignment = Assignment.new
     end
 
     def create
-        if_not_logged_in_redirect_to_login
-
         if_not_project_manager
 
         @assignment = Assignment.new(assignment_params)
@@ -32,8 +27,6 @@ class AssignmentsController < ApplicationController
     end
 
     def show
-        if_not_logged_in_redirect_to_login
-
         does_assignment_exist?(params[:id])
 
         @assignment = Assignment.find_by_id(params[:id])
@@ -41,8 +34,6 @@ class AssignmentsController < ApplicationController
     end
 
     def edit
-        if_not_logged_in_redirect_to_login
-
         if !current_programmer.is_project_manager?
             if find_assignment.is_completed == false
                 @assignment.update_attribute(:is_completed, true)
@@ -51,7 +42,7 @@ class AssignmentsController < ApplicationController
             else
                 flash[:only_project_manager] = 'Only Project Manager has access.'
 
-                redirect_to assignments_path(current_programmer)
+                redirect_to assignments_path
             end
         end
 
@@ -59,9 +50,7 @@ class AssignmentsController < ApplicationController
     end
 
     def update
-        if_not_logged_in_redirect_to_login
-
-        if_not_project_manager
+        redirect_to_assignments_if_not_project_manager
 
         find_assignment
 
@@ -73,8 +62,6 @@ class AssignmentsController < ApplicationController
     end
 
     def destroy
-        if_not_logged_in_redirect_to_login
-
         if current_programmer.is_project_manager? != true
             flash[:only_project_manager] = 'Only Project Manager has access.'
 

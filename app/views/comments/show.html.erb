@@ -2,10 +2,13 @@
 <%= @comment.assignment.project.name %><br />
 
 <label>Project Assignment: </label>
-<%= @comment.assignment.task %><br />
+<%= @comment.assignment.task %><br /><br />
 
 <label>Comment Title: </label>
 <%= @comment.title %><br />
+
+<label>Commenter: </label>
+<%= @comment.programmer.full_name %><br />
 
 <label>Comment: </label>
 <%= @comment.content %><br /><br />

@@ -27,11 +27,11 @@
         <% @assignment.comments.each do |comment| %>
             <div>    
                 <label>Title: </label>
-                <%= comment.title %>
+                <%= link_to comment.title, assignment_comment_path(@assignment, comment) %>
                 <br />
 
                 <label>By: </label>
-                <%= comment.programmer.full_name %>
+                <%= link_to comment.programmer.full_name, programmer_path(comment.programmer) %>
                 <br />
 
                 <label>Message: </label>

@@ -1,6 +1,16 @@
+<label>Comments For: </label>
+<%= @assignment.project.name %><br />
+
+<label>Task: </label>
+<%= @assignment.task %><br /><br />
+
+
 <% @comments.each do |comment| %>
     <label>Comment Title: </label>
     <%= link_to comment.title, assignment_comment_path(comment.assignment.id, comment.id) %><br />
+
+    <label>Commenter: </label>
+    <%= comment.programmer.full_name %><br />
 
     <label>Comment: </label>
     <%= comment.content %><br /><br />
