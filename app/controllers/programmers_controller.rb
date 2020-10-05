@@ -1,5 +1,5 @@
 class ProgrammersController < ApplicationController
-    before_action :if_not_logged_in_redirect_to_login
+    before_action :if_not_logged_in_redirect_to_login, except: [:new, :create]
     before_action :if_logged_in_redirect_to_programmer_home, only: [:new, :create]
     before_action :find_programmer, only: [:show, :edit, :update, :destroy]
 
