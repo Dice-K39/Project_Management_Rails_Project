@@ -1,6 +1,8 @@
 class AssignmentsController < ApplicationController
     before_action :if_not_logged_in_redirect_to_login
     before_action :redirect_to_assignments_if_not_project_manager, only: [:new, :create, :update, :destroy]
+    before_action :does_assignment_exist?, only: [:show, :edit, :update, :destroy]
+
     def index
         if !!params[:query]
             @assignments = Assignment.search(params[:query])
@@ -24,8 +26,6 @@ class AssignmentsController < ApplicationController
     end
 
     def show
-        does_assignment_exist?(params[:id])
-
         @assignment = Assignment.find_by_id(params[:id])
         @comments = @assignment.comments.find_by_id(params[:id])
     end
@@ -56,7 +56,7 @@ class AssignmentsController < ApplicationController
         end
     end
 
-    def destroy        
+    def destroy
         find_assignment
 
         if @assignment.delete
@@ -74,5 +74,15 @@ class AssignmentsController < ApplicationController
 
     def find_assignment
         @assignment = current_programmer.assignments.find_by_id(params[:id])
+    end
+
+    def does_assignment_exist?(id)
+        exist = Assignment.find_by_id(id)
+
+        if exist == nil
+            flash[:dont_exist] = 'No record in database.'
+
+            redirect_to assignments_path
+        end
     end
 end

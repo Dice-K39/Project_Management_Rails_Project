@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+    before_action :if_logged_in_redirect_to_programmer_home, only: [:new, :create]
+
     def new
     end
 
