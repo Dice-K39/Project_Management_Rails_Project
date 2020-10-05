@@ -1,24 +1,21 @@
-# README
+# Project Management Rails Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple take on a Project Management app that reports tasks and projects as completed.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+To get started, clone the app and install the gems with:
 
-* System dependencies
+    bundle install
 
-* Configuration
+Migrate the database with:
 
-* Database creation
+    rails db:migrate
 
-* Database initialization
+Then run the server with:
 
-* How to run the test suite
+    rails s
 
-* Services (job queues, cache servers, search engines, etc.)
+## License
 
-* Deployment instructions
-
-* ...
+This app and the gems that are used are available as open source projects under the terms of the MIT License.
