@@ -1,7 +1,6 @@
 class AssignmentsController < ApplicationController
     before_action :if_not_logged_in_redirect_to_login
     before_action :redirect_to_assignments_if_not_project_manager, only: [:new, :create, :update, :destroy]
-    before_action :does_assignment_exist?, only: [:show, :edit, :update, :destroy]
 
     def index
         if !!params[:query]
@@ -26,11 +25,15 @@ class AssignmentsController < ApplicationController
     end
 
     def show
+        does_assignment_exist?(params[:id])
+
         @assignment = Assignment.find_by_id(params[:id])
         @comments = @assignment.comments.find_by_id(params[:id])
     end
 
     def edit
+        does_assignment_exist?(params[:id])
+
         if !current_programmer.is_project_manager?
             if find_assignment.is_completed == false
                 @assignment.update_attribute(:is_completed, true)
@@ -47,6 +50,8 @@ class AssignmentsController < ApplicationController
     end
 
     def update
+        does_assignment_exist?(params[:id])
+
         find_assignment
 
         if @assignment.update(assignment_params)
@@ -57,6 +62,8 @@ class AssignmentsController < ApplicationController
     end
 
     def destroy
+        does_assignment_exist?(params[:id])
+        
         find_assignment
 
         if @assignment.delete
