@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
     def index
         find_assignment
         @comments = @assignment.comments
-        # @comments = Assignment.find_by_id(params[:assignment_id]).comments
     end
 
     def new

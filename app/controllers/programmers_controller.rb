@@ -1,20 +1,18 @@
 class ProgrammersController < ApplicationController
-    def index
-        if_not_logged_in_redirect_to_login
-        
+    before_action :if_not_logged_in_redirect_to_login
+    before_action :if_logged_in_redirect_to_programmer_home, only: [:new, :create]
+    before_action :find_programmer, only: [:show, :edit, :update, :destroy]
+
+    def index        
         @currently_logged_in_programmer = current_programmer
         @programmers = Programmer.all
     end
 
     def new
-        if_logged_in_redirect_to_programmer_home
-
         @programmer = Programmer.new
     end
 
     def create
-        if_logged_in_redirect_to_programmer_home
-
         @programmer = Programmer.new(programmer_params)
 
         if @programmer.valid?
@@ -31,22 +29,12 @@ class ProgrammersController < ApplicationController
     end
 
     def show
-        if_not_logged_in_redirect_to_login
-
-        @programmer = Programmer.find_by_id(params[:id])
     end
 
     def edit
-        if_not_logged_in_redirect_to_login
-
-        @programmer = Programmer.find_by_id(params[:id])
     end
 
     def update
-        if_not_logged_in_redirect_to_login
-
-        @programmer = Programmer.find_by_id(params[:id])
-
         if @programmer.update(programmer_params)
             last_login_and_redirect(@programmer)
         else
@@ -55,14 +43,10 @@ class ProgrammersController < ApplicationController
     end
 
     def destroy
-        if_not_logged_in_redirect_to_login
-        
-        programmer = Programmer.find_by_id(params[:id])
-
-        if programmer.delete
+        if @programmer.delete
             redirect_to '/'
         else
-            redirect_to programmer_path(programmer)
+            redirect_to programmer_path(@programmer)
         end
     end
 
@@ -77,5 +61,9 @@ class ProgrammersController < ApplicationController
         programmer.update_attribute(:login_count,programmer.login_count + 1)
 
         redirect_to programmer_path(programmer)
+    end
+
+    def find_programmer
+        @programmer = Programmer.find_by_id(params[:id])
     end
 end
