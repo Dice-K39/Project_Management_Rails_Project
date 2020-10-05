@@ -15,8 +15,8 @@ class CommentsController < ApplicationController
     end
 
     def create
-        assignment = Assignment.find_by_id(params[:assignment_id])
-        comment = assignment.comments.new(comment_params)
+        @assignment = Assignment.find_by_id(params[:assignment_id])
+        comment = @assignment.comments.new(comment_params)
 
         comment.programmer_id = current_programmer.id
 
@@ -30,8 +30,8 @@ class CommentsController < ApplicationController
     end
 
     def show
-        assignment = Assignment.find_by_id(params[:assignment_id])
-        @comment = assignment.comments.find_by_id(params[:id])
+        @assignment = Assignment.find_by_id(params[:assignment_id])
+        @comment = @assignment.comments.find_by_id(params[:id])
     end
 
     def edit
@@ -56,7 +56,6 @@ class CommentsController < ApplicationController
     def destroy
         redirect_if_not_current_programmer_or_project_manager(session[:programmer_id])
         
-        assignment = Assignment.find_by_id(params[:assignment_id])
         comment = Comment.find_by_id(params[:id])
 
         if comment.delete

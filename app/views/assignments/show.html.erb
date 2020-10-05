@@ -20,6 +20,11 @@
         <% end %>
 
         <%= link_to 'Add Comment', new_assignment_comment_path(@assignment), class: "button is-warning" %>
+
+        <% if current_programmer.is_project_manager %>
+            <%= button_to "Delete Project", assignment_path(@assignment), class: 'button is-danger', method: :delete, data: {confirm: 'Delete Project?'}  %>
+        <% end %>
+
     </div>
 
     <div class="column is-one-quarter">
