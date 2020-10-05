@@ -1,23 +1,17 @@
 class ProjectsController < ApplicationController
-    def index
-        if_not_logged_in_redirect_to_login
+    before_action :if_not_logged_in_redirect_to_login
+    before_action :find_project, only: [:show, :edit, :update, :destroy]
+    before_action :redirect_to_projects_if_not_project_manager, except: [:index]
 
+    def index
         @projects = Project.all
     end
 
     def new
-        if_not_logged_in_redirect_to_login
-
-        if_not_project_manager
-
         @project = Project.new
     end
 
     def create
-        if_not_logged_in_redirect_to_login
-
-        if_not_project_manager
-
         @project = Project.new(project_params)
 
         if @project.valid?
@@ -30,26 +24,12 @@ class ProjectsController < ApplicationController
     end
 
     def show
-        if_not_logged_in_redirect_to_login
-
-        find_project
     end
 
     def edit
-        if_not_logged_in_redirect_to_login
-
-        if_not_project_manager
-
-        find_project
     end
 
     def update
-        if_not_logged_in_redirect_to_login
-
-        if_not_project_manager
-
-        @project = Project.find_by_id(params[:id])
-
         if @project.valid?
             @project.update(project_params)
             
@@ -60,12 +40,6 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
-        if_not_logged_in_redirect_to_login
-
-        if_not_project_manager
-        
-        find_project
-
         if @project.delete
             redirect_to projects_path
         else

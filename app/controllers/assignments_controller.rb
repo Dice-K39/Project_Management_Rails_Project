@@ -1,5 +1,6 @@
 class AssignmentsController < ApplicationController
     before_action :if_not_logged_in_redirect_to_login
+    before_action :redirect_to_assignments_if_not_project_manager, only: [:new, :create, :update, :destroy]
     def index
         if !!params[:query]
             @assignments = Assignment.search(params[:query])
@@ -9,14 +10,10 @@ class AssignmentsController < ApplicationController
     end
 
     def new
-        redirect_to_assiments_if_not_project_manager
-
         @assignment = Assignment.new
     end
 
     def create
-        if_not_project_manager
-
         @assignment = Assignment.new(assignment_params)
 
         if @assignment.save
@@ -50,8 +47,6 @@ class AssignmentsController < ApplicationController
     end
 
     def update
-        redirect_to_assignments_if_not_project_manager
-
         find_assignment
 
         if @assignment.update(assignment_params)
@@ -61,13 +56,7 @@ class AssignmentsController < ApplicationController
         end
     end
 
-    def destroy
-        if current_programmer.is_project_manager? != true
-            flash[:only_project_manager] = 'Only Project Manager has access.'
-
-            redirect_to assignments_path(current_programmer)
-        end
-        
+    def destroy        
         find_assignment
 
         if @assignment.delete
