@@ -15,7 +15,7 @@
         <label>Programmer Assigned: </label>
         <%= @assignment.programmer.full_name %><br /><br />
 
-        <% if !@assignment.is_completed? %>
+        <% if !@assignment.is_completed? && current_programmer.id == @assignment.programmer_id %>
             <%= link_to 'Completed?', edit_assignment_path(@assignment), class: "button is-success" %>
         <% end %>
 

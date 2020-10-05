@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     end
 
     def redirect_if_not_current_programmer_or_project_manager(id)
-        if !current_programmer.is_project_manager && current_programmer.id != id.to_i
+        if !current_programmer.is_project_manager && current_programmer.id != id
             flash[:not_assigned_programmer] = "No Access."
 
             redirect_to programmer_path(current_programmer)
