@@ -54,4 +54,14 @@ class ApplicationController < ActionController::Base
             redirect_to assignments_path
         end
     end
+
+    def does_assignment_exist?(id)
+        exist = Assignment.find_by_id(id)
+
+        if exist == nil
+            flash[:dont_exist] = 'No record in database.'
+
+            redirect_to assignments_path
+        end
+    end
 end
