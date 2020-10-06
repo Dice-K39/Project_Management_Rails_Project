@@ -10,7 +10,7 @@
     <%= link_to comment.title, assignment_comment_path(comment.assignment.id, comment.id) %><br />
 
     <label>Commenter: </label>
-    <%= comment.programmer.full_name %><br />
+    <%= comment.full_name %><br />
 
     <label>Comment: </label>
     <%= comment.content %><br /><br />

@@ -13,7 +13,7 @@
         <%= @assignment.completed? %><br />
 
         <label>Programmer Assigned: </label>
-        <%= @assignment.programmer.full_name %><br /><br />
+        <%= @assignment.full_name %><br /><br />
 
         <% if !@assignment.is_completed? && current_programmer.id == @assignment.programmer_id %>
             <%= link_to 'Completed?', edit_assignment_path(@assignment), class: "button is-success" %>
@@ -36,7 +36,7 @@
                 <br />
 
                 <label>By: </label>
-                <%= link_to comment.programmer.full_name, programmer_path(comment.programmer) %>
+                <%= link_to comment.full_name, programmer_path(comment.programmer) %>
                 <br />
 
                 <label>Message: </label>

@@ -11,15 +11,15 @@ class Assignment < ApplicationRecord
         self.programmer.first_name + ' ' + self.programmer.last_name
     end
 
-    def self.search(query)
-        self.where('task LIKE ?', "%#{query}%")
-    end
-
     def completed?
         if self.is_completed
             'YES'
         else
             'NO'
         end
+    end
+
+    def self.search(query)
+        self.where('task LIKE ?', "%#{query}%")
     end
 end
