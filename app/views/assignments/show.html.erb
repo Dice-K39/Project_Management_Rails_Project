@@ -15,8 +15,8 @@
         <label>Programmer Assigned: </label>
         <%= @assignment.full_name %><br /><br />
 
-        <% if !@assignment.is_completed? && current_programmer.id == @assignment.programmer_id %>
-            <%= link_to 'Completed?', edit_assignment_path(@assignment), class: "button is-success" %>
+        <% if !current_programmer.is_project_manager && !@assignment.is_completed? && current_programmer.id == @assignment.programmer_id %>
+            <%= button_to 'Completed?', assignment_path(@assignment), class: "button is-success" %>
         <% end %>
 
         <%= link_to 'Add Comment', new_assignment_comment_path(@assignment), class: "button is-warning" %>
