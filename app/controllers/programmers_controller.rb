@@ -29,12 +29,16 @@ class ProgrammersController < ApplicationController
     end
 
     def show
+        does_programmer_exist?(params[:id])
     end
 
     def edit
+        does_programmer_exist?(params[:id])
     end
 
     def update
+        does_programmer_exist?(params[:id])
+
         if @programmer.update(programmer_params)
             last_login_and_redirect(@programmer)
         else
@@ -43,6 +47,8 @@ class ProgrammersController < ApplicationController
     end
 
     def destroy
+        does_programmer_exist?(params[:id])
+
         if @programmer.delete
             redirect_to '/'
         else
@@ -61,6 +67,16 @@ class ProgrammersController < ApplicationController
         counting_logins(programmer)
 
         redirect_to programmer_path(programmer)
+    end
+
+    def does_programmer_exist?(id)
+        exist = Programmer.find_by_id(id)
+
+        if exist == nil
+            flash[:dont_exist] = 'No record in database.'
+
+            redirect_to programmers_path
+        end
     end
 
     def find_programmer

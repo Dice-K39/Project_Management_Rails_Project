@@ -23,12 +23,16 @@ class ProjectsController < ApplicationController
     end
 
     def show
+        does_project_exist?(params[:id])
     end
 
     def edit
+        does_project_exist?(params[:id])
     end
 
     def update
+        does_project_exist?(params[:id])
+
         if @project.valid?
             @project.update(project_params)
             
@@ -39,6 +43,8 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
+        does_project_exist?(params[:id])
+        
         if @project.delete
             redirect_to projects_path
         else
@@ -50,6 +56,16 @@ class ProjectsController < ApplicationController
 
     def project_params
         params.require(:project).permit(:name, :description, :due_date, :status)
+    end
+
+    def does_project_exist?(id)
+        exist = Project.find_by_id(id)
+
+        if exist == nil
+            flash[:dont_exist] = 'No record in database.'
+
+            redirect_to projects_path
+        end
     end
 
     def find_project

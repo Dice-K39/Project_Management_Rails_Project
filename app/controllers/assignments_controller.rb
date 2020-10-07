@@ -3,7 +3,7 @@ class AssignmentsController < ApplicationController
     before_action :redirect_to_assignments_if_not_project_manager, only: [:new, :create, :destroy]
 
     def index
-        if !!params[:query]
+        if params[:query]
             @assignments = Assignment.search(params[:query])
         else
             @assignments = Assignment.all
@@ -34,18 +34,6 @@ class AssignmentsController < ApplicationController
         does_assignment_exist?(params[:id])
 
         @assignment = find_assignment
-
-        # if !current_programmer.is_project_manager?
-        #     if @assignment.is_completed == false
-        #         @assignment.update_attribute(:is_completed, true)
-
-        #         redirect_to assignment_path(@assignment)
-        #     else
-        #         flash[:only_project_manager] = 'Only Project Manager has access.'
-
-        #         redirect_to assignments_path
-        #     end
-        # end
     end
 
     def update
