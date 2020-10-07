@@ -19,7 +19,7 @@ class Assignment < ApplicationRecord
         end
     end
 
-    def self.search(query)
+    def self.assignment_search(query)
         self.where('task LIKE ?', "%#{query}%")
     end
 end

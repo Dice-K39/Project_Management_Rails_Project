@@ -25,4 +25,8 @@ class Programmer < ApplicationRecord
     def format_last_login
         self.last_login.strftime("%B %e, %Y at %l:%M%p")
     end
+
+    def self.programmer_search(query)
+        self.where('first_name LIKE ?', "%#{query}%")
+    end
 end

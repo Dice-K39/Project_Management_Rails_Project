@@ -1,5 +1,11 @@
 Welcome: <%= @currently_logged_in_programmer.first_name %><br /><br />
 
+<%= form_tag(programmers_path, method: :get) do %>
+    <%= label_tag 'Search Programmer by First Name: '%>
+    <%= text_field_tag 'query' %>
+    <%= submit_tag 'Search', class: 'button is-primary' %>
+<% end %><br />
+
 <% @programmers.each do |programmer| %>
     <div>
         <label>Name: </label>

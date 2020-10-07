@@ -5,7 +5,12 @@ class ProgrammersController < ApplicationController
 
     def index        
         @currently_logged_in_programmer = current_programmer
-        @programmers = Programmer.all
+
+        if params[:query]
+            @programmers = Programmer.programmer_search(params[:query])
+        else
+            @programmers = Programmer.all
+        end
     end
 
     def new
