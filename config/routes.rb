@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :programmers
   resources :projects
 
+  # post '/assignments/:id' => 'assignments#update'
+
   resources :assignments do
     resources :comments
   end  

@@ -59,8 +59,4 @@ class SessionsController < ApplicationController
     def auth
         request.env['omniauth.auth']
     end
-
-    def counting_logins(programmer)
-        programmer.update_attribute(:login_count,programmer.login_count + 1)
-    end
 end
