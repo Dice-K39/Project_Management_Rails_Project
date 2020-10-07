@@ -22,6 +22,7 @@
         <%= link_to 'Add Comment', new_assignment_comment_path(@assignment), class: "button is-warning" %>
 
         <% if current_programmer.is_project_manager %>
+            <%= link_to "Update Assignment", edit_assignment_path(@assignment), class: 'button is-warning'%>
             <%= button_to "Delete Assignment", assignment_path(@assignment), class: 'button is-danger', method: :delete, data: {confirm: 'Delete Assignment?'}  %>
         <% end %>
 

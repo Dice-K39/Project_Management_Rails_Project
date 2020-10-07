@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :is_logged_in?, :current_programmer, :if_logged_in_redirect_to_programmer_home, :if_not_logged_in_redirect_to_login, :redirect_if_not_current_programmer_or_project_manager, :redirect_to_programmer_if_not_project_manager, :counting_logins
+    helper_method :is_logged_in?, :current_programmer, :if_logged_in_redirect_to_programmer_home, :if_not_logged_in_redirect_to_login, :redirect_if_not_current_programmer_or_project_manager, :redirect_to_programmer_if_not_project_manager, :does_assignment_exist?, :counting_logins
 
     def is_logged_in?
         !!current_programmer

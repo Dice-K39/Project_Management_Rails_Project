@@ -27,15 +27,16 @@ class AssignmentsController < ApplicationController
     def show
         does_assignment_exist?(params[:id])
 
-        @assignment = Assignment.find_by_id(params[:id])
-        @comments = @assignment.comments.find_by_id(params[:id])
+        @assignment = find_assignment
     end
 
     def edit
         does_assignment_exist?(params[:id])
 
+        @assignment = find_assignment
+
         if !current_programmer.is_project_manager?
-            if find_assignment.is_completed == false
+            if @assignment.is_completed == false
                 @assignment.update_attribute(:is_completed, true)
 
                 redirect_to assignment_path(@assignment)
@@ -45,14 +46,12 @@ class AssignmentsController < ApplicationController
                 redirect_to assignments_path
             end
         end
-
-        find_assignment
     end
 
     def update
         does_assignment_exist?(params[:id])
 
-        find_assignment
+        @assignment = find_assignment
 
         if @assignment.update(assignment_params)
             redirect_to assignment_path(@assignment)
@@ -64,7 +63,7 @@ class AssignmentsController < ApplicationController
     def destroy
         does_assignment_exist?(params[:id])
         
-        find_assignment
+        @assignment = find_assignment
 
         if @assignment.delete
             redirect_to '/'
@@ -80,8 +79,6 @@ class AssignmentsController < ApplicationController
     end
 
     def find_assignment
-        @assignment = current_programmer.assignments.find_by_id(params[:id])
+        Assignment.find_by_id(params[:id])
     end
-
-
 end
