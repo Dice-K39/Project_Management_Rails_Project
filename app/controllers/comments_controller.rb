@@ -11,19 +11,21 @@ class CommentsController < ApplicationController
         does_assignment_exist?(params[:assignment_id])
 
         find_assignment
+
         @comment = @assignment.comments.new
     end
 
     def create
         find_assignment
-        comment = @assignment.comments.new(comment_params)
 
-        comment.programmer_id = current_programmer.id
+        @comment = @assignment.comments.new(comment_params)
 
-        if comment.valid?
-            comment.save
+        @comment.programmer_id = current_programmer.id
 
-            redirect_to assignment_comments_path(comment.assignment_id)
+        if @comment.valid?
+            @comment.save
+
+            redirect_to assignment_comments_path(@comment.assignment_id)
         else
             render :new
         end
@@ -31,7 +33,7 @@ class CommentsController < ApplicationController
 
     def show
         find_assignment
-        @comment = @assignment.comments.find_by_id(params[:id])
+        find_comment
     end
 
     def edit
