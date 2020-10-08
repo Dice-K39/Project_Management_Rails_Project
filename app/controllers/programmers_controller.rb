@@ -3,9 +3,7 @@ class ProgrammersController < ApplicationController
     before_action :if_logged_in_redirect_to_programmer_home, only: [:new, :create]
     before_action :find_programmer, only: [:show, :edit, :update, :destroy]
 
-    def index        
-        @currently_logged_in_programmer = current_programmer
-
+    def index
         if params[:query]
             @programmers = Programmer.programmer_search(params[:query])
         else
@@ -81,6 +79,14 @@ class ProgrammersController < ApplicationController
             flash[:dont_exist] = 'No record in database.'
 
             redirect_to programmers_path
+        end
+    end
+
+    def redirect_to_programmers_if_not_project_manager
+        if current_programmer.is_project_manager != true
+            flash[:not_admin] = "Only Project Manager has access."
+
+            redirect_to programmer_path(current_programmer)
         end
     end
 

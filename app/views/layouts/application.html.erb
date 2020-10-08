@@ -18,7 +18,7 @@
     <div class="navbar-start">
       <div class="navbar-item">
         <div class="buttons">
-          
+
           <% if is_logged_in? %>    
             <%= link_to 'Home', programmer_path(current_programmer), class: "button is-primary navbar-item"%>
           <% else %>
@@ -48,6 +48,11 @@
                 <%= link_to 'Login', login_path, class: "button is-light nav-bar-item" %>
                 <%= button_to 'Login with GitHub', '/auth/github', class: "button is-primary navbar-item"%>
               <% else %>
+                <div class="content">
+                  <div class="mx-5">
+                    <label>Welcome <%= current_programmer.first_name%></label>
+                  </div>
+                </div>
                 <%= button_to 'Logout', logout_path, class: 'button is-danger' %>
               <% end %>
             </div>

@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
     before_action :if_not_logged_in_redirect_to_login
-    before_action :redirect_to_assignments_if_not_project_manager, only: [:new, :create, :destroy]
+    before_action :redirect_to_assignments_if_not_project_manager, only: [:new, :create, :edit, :update, :destroy]
 
     def index
         if params[:query]
