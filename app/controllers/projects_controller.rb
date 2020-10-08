@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
     before_action :if_not_logged_in_redirect_to_login
     before_action :find_project, only: [:show, :edit, :update, :destroy]
+    before_action :redirect_to_projects_if_not_project_manager, except: [:index, :show]
     
     def index
         @projects = Project.all
