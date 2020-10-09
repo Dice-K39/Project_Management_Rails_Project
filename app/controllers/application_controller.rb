@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :is_logged_in?, :current_programmer, :if_logged_in_redirect_to_programmer_home, :if_not_logged_in_redirect_to_login, :redirect_to_programmer_if_not_project_manager, :does_assignment_exist?, :counting_logins
+    helper_method :is_logged_in?, :current_programmer, :if_logged_in_redirect_to_programmer_home, :if_not_logged_in_redirect_to_login, :does_assignment_exist?, :counting_logins
 
     def is_logged_in?
         !!current_programmer
@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
 
     def if_logged_in_redirect_to_programmer_home
         if is_logged_in?
+            flash[:already_logged_in] = "Already logged in."
+            
             redirect_to programmer_path(session[:programmer_id])
         end
     end
@@ -20,14 +22,6 @@ class ApplicationController < ActionController::Base
             flash[:not_logged_in] = "Please login."
 
             redirect_to login_path
-        end
-    end
-
-    def redirect_to_projects_if_not_project_manager
-        if current_programmer.is_project_manager != true
-            flash[:not_admin] = "Only Project Manager has access."
-
-            redirect_to projects_path
         end
     end
 

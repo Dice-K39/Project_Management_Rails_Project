@@ -13,7 +13,7 @@
     <%= @programmer.format_created_at %>
 </div>
 
-<% if current_programmer.id == @programmer.id %>
+<% if current_programmer.id == @programmer.id || current_programmer.is_project_manager %>
     <%= link_to "Update Profile", edit_programmer_path(@programmer), class: 'button is-warning' %>
 <% end %>
 

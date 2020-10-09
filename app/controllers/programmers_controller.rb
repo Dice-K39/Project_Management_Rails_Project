@@ -2,6 +2,7 @@ class ProgrammersController < ApplicationController
     before_action :if_not_logged_in_redirect_to_login, except: [:new, :create]
     before_action :if_logged_in_redirect_to_programmer_home, only: [:new, :create]
     before_action :find_programmer, only: [:show, :edit, :update, :destroy]
+    before_action :checks_for_programmer, only: [:edit, :update, :destroy]
 
     def index
         if params[:query]
@@ -32,26 +33,21 @@ class ProgrammersController < ApplicationController
     end
 
     def show
-        does_programmer_exist?(params[:id])
+        does_programmer_exist?
     end
 
     def edit
-        does_programmer_exist?(params[:id])
     end
 
     def update
-        does_programmer_exist?(params[:id])
-
         if @programmer.update(programmer_params)
-            last_login_and_redirect(@programmer)
+            redirect_to programmer_path(@programmer)
         else
             render :edit
         end
     end
 
     def destroy
-        does_programmer_exist?(params[:id])
-
         if @programmer.delete
             redirect_to '/'
         else
@@ -72,8 +68,8 @@ class ProgrammersController < ApplicationController
         redirect_to programmer_path(programmer)
     end
 
-    def does_programmer_exist?(id)
-        exist = Programmer.find_by_id(id)
+    def does_programmer_exist?
+        exist = Programmer.find_by_id(params[:id])
 
         if exist == nil
             flash[:dont_exist] = 'No record in database.'
@@ -82,12 +78,18 @@ class ProgrammersController < ApplicationController
         end
     end
 
-    def redirect_to_programmers_if_not_project_manager
-        if current_programmer.is_project_manager != true
-            flash[:not_admin] = "Only Project Manager has access."
+    def can_change_info?
+        if current_programmer.id != @programmer.id && !current_programmer.is_project_manager
+            flash[:not_alloed_to_change_info] = 'No access.'
 
-            redirect_to programmer_path(current_programmer)
+            redirect_to programmers_path
         end
+    end
+
+    def checks_for_programmer
+        does_programmer_exist?
+
+        can_change_info?
     end
 
     def find_programmer
