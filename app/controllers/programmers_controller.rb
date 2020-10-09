@@ -1,7 +1,6 @@
 class ProgrammersController < ApplicationController
     before_action :if_not_logged_in_redirect_to_login, except: [:new, :create]
     before_action :if_logged_in_redirect_to_programmer_home, only: [:new, :create]
-    before_action :find_programmer, only: [:show, :edit, :update, :destroy]
     before_action :checks_for_programmer, only: [:edit, :update, :destroy]
 
     def index
@@ -34,6 +33,8 @@ class ProgrammersController < ApplicationController
 
     def show
         does_programmer_exist?
+
+        find_programmer
     end
 
     def edit
@@ -78,6 +79,10 @@ class ProgrammersController < ApplicationController
         end
     end
 
+    def find_programmer
+        @programmer = Programmer.find_by_id(params[:id])
+    end
+
     def can_change_info?
         if current_programmer.id != @programmer.id && !current_programmer.is_project_manager
             flash[:not_alloed_to_change_info] = 'No access.'
@@ -89,10 +94,8 @@ class ProgrammersController < ApplicationController
     def checks_for_programmer
         does_programmer_exist?
 
-        can_change_info?
-    end
+        find_programmer
 
-    def find_programmer
-        @programmer = Programmer.find_by_id(params[:id])
+        can_change_info?
     end
 end

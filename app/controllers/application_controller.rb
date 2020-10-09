@@ -33,8 +33,8 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def does_assignment_exist?(id)
-        exist = Assignment.find_by_id(id)
+    def does_assignment_exist?
+        exist = Assignment.find_by_id(params[:id])
 
         if exist == nil
             flash[:dont_exist] = 'No record in database.'
