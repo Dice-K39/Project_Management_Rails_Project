@@ -1,6 +1,4 @@
 class CommentsController < ApplicationController
-    before_action :if_not_logged_in_redirect_to_login
-
     def index
         does_assignment_exist?(params[:assignment_id])
 

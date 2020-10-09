@@ -1,7 +1,7 @@
 class ProgrammersController < ApplicationController
-    before_action :if_not_logged_in_redirect_to_login, except: [:new, :create]
     before_action :if_logged_in_redirect_to_programmer_home, only: [:new, :create]
     before_action :checks_for_programmer, only: [:edit, :update, :destroy]
+    skip_before_action :if_not_logged_in_redirect_to_login, only: [:new, :create]
 
     def index
         if params[:query]
