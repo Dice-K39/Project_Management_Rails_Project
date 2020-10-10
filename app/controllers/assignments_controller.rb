@@ -56,10 +56,6 @@ class AssignmentsController < ApplicationController
         params.require(:assignment).permit(:task, :assigned_at, :is_completed, :programmer_id, :project_id)
     end
 
-    def find_assignment
-        @assignment = Assignment.find_by_id(params[:id])
-    end
-
     def check_for_assignment
         does_assignment_exist?
 

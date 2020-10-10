@@ -1,20 +1,19 @@
 class CommentsController < ApplicationController
-    def index
-        does_assignment_exist?
+    before_action :redirect_to_comments_if_not_owner_or_project_manager, only: [:edit, :update, :destroy]
+    before_action :does_assignment_exist?
+    before_action :does_comment_exist?, only: [:show, :edit, :update, :destroy]
+    before_action :find_assignment, only: [:index, :new, :create]
+    before_action :find_assignment_comment, only: [:show, :edit, :update, :destroy]
 
-        find_assignment
+    def index
         @comments = @assignment.comments
     end
 
     def new
-        find_assignment
-
         @comment = @assignment.comments.new
     end
 
     def create
-        find_assignment
-
         @comment = @assignment.comments.new(comment_params)
 
         @comment.programmer_id = current_programmer.id
@@ -29,29 +28,12 @@ class CommentsController < ApplicationController
     end
 
     def show
-        does_assignment_exist?
-        does_comment_exist?
-
-        find_assignment_comment
-
     end
 
     def edit
-        redirect_to_comments_if_not_owner
-
-        does_assignment_exist?
-        does_comment_exist?
-
-        find_assignment_comment
     end
 
     def update
-        redirect_to_comments_if_not_owner
-        does_assignment_exist?
-        does_comment_exist?
-
-        find_assignment_comment
-
         if @comment.update(comment_params)
             redirect_to assignment_comments_path(@comment.assignment_id)
         else
@@ -59,11 +41,7 @@ class CommentsController < ApplicationController
         end
     end
 
-    def destroy
-        redirect_to_comments_if_not_owner
-
-        find_assignment_comment
-        
+    def destroy        
         if @comment.delete
             redirect_to assignment_comments_path(@assignment)
         else
@@ -87,19 +65,13 @@ class CommentsController < ApplicationController
         end
     end
 
-    def find_assignment
-        @assignment = Assignment.find_by_id(params[:assignment_id])
-    end
-
     def find_assignment_comment
-
-        @assignment = Assignment.find_by_id(params[:assignment_id])
+        find_assignment
         
         @comment = @assignment.comments.find_by_id(params[:id])
-
     end
 
-    def redirect_to_comments_if_not_owner
+    def redirect_to_comments_if_not_owner_or_project_manager
         find_assignment_comment
 
         if !current_programmer.is_project_manager && @comment.programmer_id != current_programmer.id
