@@ -15,5 +15,5 @@
 
 <% if current_programmer.id == @comment.programmer_id || current_programmer.is_project_manager %>
     <%= link_to "Update Comment", edit_assignment_comment_path(@comment.assignment_id), class: 'button is-warning'%>
-    <%= button_to "Delete Comment", assignment_comment_path(@comment), class: 'button is-danger', method: :delete, data: {confirm: 'Delete Comment?'}  %>
+    <%= button_to "Delete Comment", assignment_comment_path(@comment.assignment_id, @comment), class: 'button is-danger', method: :delete, data: {confirm: 'Delete Comment?'}  %>
 <% end %>

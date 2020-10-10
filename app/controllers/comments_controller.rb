@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
     def index
-        does_assignment_exist?(params[:assignment_id])
+        does_assignment_exist?
 
         find_assignment
         @comments = @assignment.comments
@@ -29,25 +29,26 @@ class CommentsController < ApplicationController
     end
 
     def show
-        does_assignment_exist?(params[:assignment_id])
-        does_comment_exist?(params[:id])
+        does_assignment_exist?
+        does_comment_exist?
 
         find_assignment_comment
+
     end
 
     def edit
         redirect_to_comments_if_not_owner
 
-        does_assignment_exist?(params[:assignment_id])
-        does_comment_exist?(params[:id])
+        does_assignment_exist?
+        does_comment_exist?
 
         find_assignment_comment
     end
 
     def update
         redirect_to_comments_if_not_owner
-        does_assignment_exist?(params[:assignment_id])
-        does_comment_exist?(params[:id])
+        does_assignment_exist?
+        does_comment_exist?
 
         find_assignment_comment
 
@@ -76,8 +77,8 @@ class CommentsController < ApplicationController
         params.require(:comment).permit(:title, :content, :assignment_id, :programmer_id)
     end
 
-    def does_comment_exist?(id)
-        exist = Comment.find_by_id(id)
+    def does_comment_exist?
+        exist = Comment.find_by_id(params[:id])
 
         if exist == nil
             flash[:dont_exist] = 'No record in database.'
@@ -93,6 +94,7 @@ class CommentsController < ApplicationController
     def find_assignment_comment
 
         @assignment = Assignment.find_by_id(params[:assignment_id])
+        
         @comment = @assignment.comments.find_by_id(params[:id])
 
     end

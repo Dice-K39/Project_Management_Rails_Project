@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     helper_method :is_logged_in?, :current_programmer, :if_logged_in_redirect_to_programmer_home, :if_not_logged_in_redirect_to_login, :does_assignment_exist?, :counting_logins
     before_action :if_not_logged_in_redirect_to_login
+    
     def is_logged_in?
         !!current_programmer
     end
@@ -34,7 +35,13 @@ class ApplicationController < ActionController::Base
     end
 
     def does_assignment_exist?
-        exist = Assignment.find_by_id(params[:id])
+        if params[:assignment_id]
+            exist = Assignment.find_by_id(params[:assignment_id])
+
+        else
+            exist = Assignment.find_by_id(params[:id])
+
+        end
 
         if exist == nil
             flash[:dont_exist] = 'No record in database.'

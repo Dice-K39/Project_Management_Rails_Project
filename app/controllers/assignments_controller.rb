@@ -1,5 +1,6 @@
 class AssignmentsController < ApplicationController
     before_action :redirect_to_assignments_if_not_project_manager, except: [:index, :show]
+    before_action :check_for_assignment, only: [:show, :edit, :update, :destroy]
 
     def index
         if params[:query]
@@ -24,22 +25,12 @@ class AssignmentsController < ApplicationController
     end
 
     def show
-        does_assignment_exist?
-
-        find_assignment
     end
 
     def edit
-        does_assignment_exist?
-
-        find_assignment
     end
 
     def update
-        does_assignment_exist?
-
-        find_assignment
-
         if !current_programmer.is_project_manager && @assignment.is_completed == false
             @assignment.update_attribute(:is_completed, true)
 
@@ -52,10 +43,6 @@ class AssignmentsController < ApplicationController
     end
 
     def destroy
-        does_assignment_exist?
-        
-        find_assignment
-
         if @assignment.delete
             redirect_to '/'
         else
@@ -71,5 +58,11 @@ class AssignmentsController < ApplicationController
 
     def find_assignment
         @assignment = Assignment.find_by_id(params[:id])
+    end
+
+    def check_for_assignment
+        does_assignment_exist?
+
+        find_assignment
     end
 end
