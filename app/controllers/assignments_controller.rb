@@ -1,5 +1,5 @@
 class AssignmentsController < ApplicationController
-    before_action :redirect_to_assignments_if_not_project_manager, except: [:index, :show]
+    before_action :redirect_to_assignments_if_not_project_manager, except: [:index, :show, :update]
     before_action :check_for_assignment, only: [:show, :edit, :update, :destroy]
 
     def index

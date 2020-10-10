@@ -1,5 +1,5 @@
 <% if assignment.errors.any? %>
-    <div id='error_explanation'>
+    <div class='content' id='error_explanation'>
         <h2>
             <%= pluralize(assignment.errors.count, 'error') %>
             prohibited this project from being saved:
@@ -7,7 +7,7 @@
 
         <ul>
             <% assignment.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
+                <strong><li><%= msg %></li></strong>
             <% end %>
         </ul>
     </div>
