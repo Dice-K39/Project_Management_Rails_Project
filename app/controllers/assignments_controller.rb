@@ -44,7 +44,7 @@ class AssignmentsController < ApplicationController
 
     def destroy
         if @assignment.delete
-            redirect_to '/'
+            redirect_to assignments_path
         else
             redirect_to assignment_path(@assignment)
         end
