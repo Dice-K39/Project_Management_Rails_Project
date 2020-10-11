@@ -1,9 +1,9 @@
 class Programmer < ApplicationRecord
     has_secure_password
     
-    has_many :assignments
+    has_many :assignments, dependent: :destroy
     has_many :projects, through: :assignments
-    has_many :comments
+    has_many :comments, dependent: :destroy
 
     validates :username, :email, presence: true, uniqueness: true
     validates :password, :first_name, :last_name, presence: true

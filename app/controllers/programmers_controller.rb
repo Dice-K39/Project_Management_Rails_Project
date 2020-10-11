@@ -49,7 +49,7 @@ class ProgrammersController < ApplicationController
     end
 
     def destroy
-        if @programmer.delete
+        if @programmer.destroy
             redirect_to '/'
         else
             redirect_to programmer_path(@programmer)

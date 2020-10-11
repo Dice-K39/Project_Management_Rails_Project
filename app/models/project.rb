@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-    has_many :assignments
+    has_many :assignments, dependent: :destroy
     has_many :programmers, through: :assignments
 
     enum status: ['PLANNING', 'IN_PROGRESS', 'COMPLETED', 'OVERDUE']
