@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
     end
 
     def destroy        
-        if @comment.delete
+        if @comment.destroy
             redirect_to assignment_comments_path(@assignment)
         else
             redirect_to assignment_comments_path(@comment)

@@ -1,5 +1,5 @@
 class Assignment < ApplicationRecord
-    has_many :comments
+    has_many :comments, dependent: :destroy
     
     belongs_to :programmer
     belongs_to :project
