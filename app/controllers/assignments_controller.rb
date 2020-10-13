@@ -17,6 +17,8 @@ class AssignmentsController < ApplicationController
     def create
         @assignment = Assignment.new(assignment_params)
 
+        @assignment.update_attribute(:assigned_at, DateTime.now)
+
         if @assignment.save
             redirect_to programmers_path
         else

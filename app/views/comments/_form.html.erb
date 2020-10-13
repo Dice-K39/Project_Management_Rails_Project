@@ -14,26 +14,27 @@
 <% end %>
 
 <%= form_for [assignment, comment] do |f| %>
-    <div>
-        <%= f.label 'Project: ' %>
-        <%= comment.assignment.project.name %>
-    </div>
+    <table>
+        <tr>
+            <th><%= f.label 'Project: ' %></th>
+            <td><%= comment.assignment.project.name %></td>
+        </tr>
 
-    <div>
-        <%= f.label 'Assignment: '%>
-        <%= comment.assignment.task %>
-    </div>
+        <tr>
+            <th><%= f.label 'Assignment: '%></th>
+            <td><%= comment.assignment.task %></td>
+        </tr>
 
-    <div>
-        <%= f.label :title %>
-        <%= f.text_field :title, placeholder: 'Enter Title' %>
-    </div>
+        <tr>
+            <th><%= f.label :title %>:</th>
+            <td><%= f.text_field :title, placeholder: 'Enter Title' %></td>
+        </tr>
 
-    <div>
-        <%= f.label :content %>
-        <%= f.text_area :content, placeholder: 'Enter Content' %>
-    </div>
-    
+        <tr>
+            <th><%= f.label :content %>:</th>
+            <td><%= f.text_area :content, placeholder: 'Enter Content' %></td>
+        </tr>
+    </table>
     <br />
 
     <%= f.submit class: 'button is-primary'%>

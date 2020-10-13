@@ -5,23 +5,36 @@
 <% end %><br />
 
 <% @assignments.each do |assignment| %>
-    <label>For: </label>
-    <%= assignment.project.name %><br />
+    <table>
+        <tr>
+            <th><label>For: </label></th>
+            <td><%= assignment.project.name %></td>
+        </tr>
 
-    <label>Task: </label>
-    <%= link_to assignment.task, assignment_path(assignment) %><br />
+        <tr>
+            <th><label>Task: </label></th>
+            <td><%= link_to assignment.task, assignment_path(assignment) %></td>
+        </tr>
 
-    <label>Assigned At: </label>
-    <%= assignment.assigned_at %><br />
+        <tr>
+            <th><label>Assigned At: </label></th>
+            <td><%= assignment.assigned_at %></td>
+        </tr>
 
-    <label>Completed?: </label>
-    <% if assignment.is_completed == true %>
-        YES
-    <% else %>
-        NO
-    <% end %><br />
+        <tr>
+            <th><label>Completed?: </label></th>
+            <td>
+                <% if assignment.is_completed == true %>
+                    YES
+                <% else %>
+                    NO
+                <% end %>
+            </td>
+        </tr>
 
-    <label>Programmer Assigned:</label>
-    <%= assignment.full_name %>
-    <br /><br />
+        <tr>
+            <th width=250px><label>Programmer Assigned:</label></th>
+            <td><%= assignment.full_name %></td>
+        </tr>
+    </table><br />  
 <% end %>

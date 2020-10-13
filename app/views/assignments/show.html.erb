@@ -1,19 +1,33 @@
 <div class="columns">
     <div class="column is-half">
-        <label>Project: </label>
-        <%= @assignment.project.name %><br />
+        <table>
+            <tr>
+                <th><label>Project: </label></th>
+                <td><%= @assignment.project.name %></td>
+            </tr>
 
-        <label>Task: </label>
-        <%= @assignment.task %><br />
+            <tr>
+                <th><label>Task: </label></th>
+                <td><%= @assignment.task %></td>
+            </tr>
 
-        <label>Assigned At: </label>
-        <%= @assignment.assigned_at %><br />
+            <tr>
+                <th><label>Assigned At: </label></th>
+                <td><%= @assignment.assigned_at %></td>
+            </tr>
 
-        <label>Completed? </label>
-        <%= @assignment.completed? %><br />
+            <tr>
+                <th><label>Completed? </label></th>
+                <td><%= @assignment.completed? %></td>
+            </tr>
 
-        <label>Programmer Assigned: </label>
-        <%= @assignment.full_name %><br /><br />
+            <tr>
+                <th><label>Programmer Assigned: </label></th>
+                <td><%= @assignment.full_name %><br /></td>
+            </tr>
+        </table>
+
+        <br />
 
         <% if !current_programmer.is_project_manager && !@assignment.is_completed? && current_programmer.id == @assignment.programmer_id %>
             <%= button_to 'Completed?', assignment_path(@assignment), class: "button is-success" %>
@@ -25,25 +39,29 @@
             <%= link_to "Update Assignment", edit_assignment_path(@assignment), class: 'button is-warning'%>
             <%= button_to "Delete Assignment", assignment_path(@assignment), class: 'button is-danger', method: :delete, data: {confirm: 'Delete Assignment?'}  %>
         <% end %>
-
     </div>
 
     <div class="column is-one-quarter">
-        <h2>Comments:</h2><br />
-        <% @assignment.comments.each do |comment| %>
-            <div>    
-                <label>Title: </label>
-                <%= link_to comment.title, assignment_comment_path(@assignment, comment) %>
-                <br />
+        <div class="content">    
+            <h3>Comments:</h3><br />
+            <% @assignment.comments.each do |comment| %>
+                <table>
+                    <tr>
+                        <th><label>Title: </label></th>
+                        <td><%= link_to comment.title, assignment_comment_path(@assignment, comment) %></td>
+                    </tr>
 
-                <label>By: </label>
-                <%= link_to comment.full_name, programmer_path(comment.programmer) %>
-                <br />
+                    <tr>
+                        <th><label>By: </label></th>
+                        <td><%= link_to comment.full_name, programmer_path(comment.programmer) %></td>
+                    </tr>
 
-                <label>Message: </label>
-                <%= comment.content %>
-                <br /><br />
-            </div>
-        <% end %>
+                    <tr>
+                        <th><label>Message: </label></th>
+                        <td><%= comment.content %></td>
+                    </tr>
+                </table>
+            <% end %>
+        </div>
     </div>
 </div>

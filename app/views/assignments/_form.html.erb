@@ -13,43 +13,34 @@
     </div>
 <% end %>
 
-    <%= form_for assignment do |f| %>
-        <table>
-            <tr>
-                <div>
-                    <th><%= f.label :project %>:</th>
-                    <td><%= f.collection_select :project_id, Project.all, :id, :name, include_blank: 'Select a Project' %></td>
-                </div>
-            </tr>
+<%= form_for assignment do |f| %>
+    <table>
+        <tr>
+            <th><%= f.label :project %>:</th>
+            <td><%= f.collection_select :project_id, Project.all, :id, :name, include_blank: 'Select a Project' %></td>
+        </tr>
 
-            <tr>
-                <div>
-                    <th><%= f.label 'Programmer Assigned:' %></th>
-                    <td><%= f.collection_select :programmer_id, Programmer.all, :id, :full_name, include_blank: 'Select a Programmer' %></td>
-                </div>
-            </tr>
+        <tr>
+            <div>
+                <th><%= f.label 'Programmer Assigned:' %></th>
+                <td><%= f.collection_select :programmer_id, Programmer.all, :id, :full_name, include_blank: 'Select a Programmer' %></td>
+            </div>
+        </tr>
 
-            <tr>
-                <div>
-                    <th><%= f.label :task %>:</th>
-                    <td><%= f.text_area :task, placeholder: 'Enter Task' %></td>
-                </div>
-            </tr>
+        <tr>
+            <div>
+                <th><%= f.label :task %>:</th>
+                <td><%= f.text_area :task, placeholder: 'Enter Task' %></td>
+            </div>
+        </tr>
 
-            <tr>
-                <div>
-                    <th><%= f.label :assigned_at %>:</th>
-                    <td><%= f.datetime_field :assigned_at, placeholder: 'Enter Date and Time' %></td>
-                </div>
-            </tr>
+        <tr>
+            <div>
+                <th><%= f.label 'Completed?' %></th>
+                <td><%= f.check_box :is_completed %></td>
+            </div>
+        </tr>
+    </table>
 
-            <tr>
-                <div>
-                    <th><%= f.label 'Completed?' %></th>
-                    <td><%= f.check_box :is_completed %></td>
-                </div>
-            </tr>
-        </table>
-
-        <%= f.submit class: 'button is-primary'%>
-    <% end %>
+    <%= f.submit class: 'button is-primary'%>
+<% end %>
