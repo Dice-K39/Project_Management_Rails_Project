@@ -8,6 +8,9 @@ class Project < ApplicationRecord
     validates :due_date, :status, presence: true
     validates :description, length: {minimum: 10}
 
+    # assessment programming challenge
+    scope :alphabetical_order, -> {order(name: :asc)}
+
     def format_created_at
         self.created_at.strftime("%B %e, %Y at %l:%M%p")
     end

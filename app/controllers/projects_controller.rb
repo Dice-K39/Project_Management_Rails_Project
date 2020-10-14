@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
     before_action :does_project_exist?, only: [:show, :edit, :update, :destroy]
     
     def index
-        @projects = Project.all
+        @projects = Project.all.alphabetical_order
     end
 
     def new
